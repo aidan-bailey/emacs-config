@@ -1,6 +1,24 @@
 (windresize-set-increment 8)
 
+;; Macros
+
+(fset 'frame-alternate
+      "\C-xo")
+(fset 'pdf-page-down
+      "\C-xoj\C-xo")
+(fset 'pdf-page-up
+      "\C-xok\C-xo")
+
 ;; Functions
+
+(defun 2-windows-vertical-to-horizontal ()
+  (let ((buffers (mapcar 'window-buffer (window-list))))
+    (when (= 2 (length buffers))
+      (delete-other-windows)
+      (set-window-buffer (split-window-horizontally) (cadr buffers)))))
+(add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
+
+
 (defun nin-origami-toggle-node ()
   (interactive)
   (save-excursion ;; leave point where it is
@@ -24,6 +42,7 @@
 		  (concat contents (when contents "\n") msg))
 	    (quick-peek-update ov))))
       flycheck-inline-clear-function #'quick-peek-hide)
+
 ;; Space Binds
 
 (general-def
@@ -34,16 +53,20 @@
   ;; Shell
   "s" 'term
 
-  ;; emacs Base Binds
-  "ha" 'helm-apropos
+  ;; Help binds
+ ; "a" 'helm-apropos
+ ; "w" 'whichkey-show-major-mode
 
-  ;; Compilation Commands
-  "im"   'helm-make
+  ;; IDE Binds
+  "id"   'realgud
+  "im"    'projectile-compile-project
+  ;"im"   'helm-make-projectile
+  ;"if"   'format-all-buffer
+  "if"   'lsp-format-buffer
+  
 
   ;; Helm Binds
   "SPC" 'helm-M-x
-  "go"  'helm-occur
-  "gk" 'helm-show-kill-ring
 
   ;; LSP Binds
   "ld" 'lsp-ui-doc-glance
@@ -51,15 +74,26 @@
 
   ;; File Binds
   "ff" 'helm-find-files
-  "fp" 'helm-projectile
+
+  ;; Project Binds
+  "pf" 'helm-projectile
+  "pr" 'helm-projectile-recentf
+  "pb" 'ibuffer-filter-by-projectile-files
+  "pn" 'neotree-projectile-action
+  "pc" 'helm-projectile-compile-project
 
   ;; Buffer Binds
-  "bf" 'format-all-buffer
   "bw" 'evil-write-all
-  "bq" 'evil-quit
+  "bq" 'evil-quit-all
+  "bd" 'kill-this-buffer
+  "bn" 'next-buffer
+  "bp" 'previous-buffer
+  "bm" 'buffer-menu
+  "bb" 'bury-buffer
+  "bu" 'unbury-buffer
 
   ;; Directory Binds
-  "d" 'neotree-toggle
+  "n" 'neotree-toggle
 
   ;; Folds Binds
   "TAB" 'origami-recursively-toggle-node
@@ -67,7 +101,6 @@
   ;; Tabs Binds
   "tl"  'centaur-tabs-forward
   "th"  'centaur-tabs-backward
-  "tt"  'centaur-tabs-add-tab
   "td"  'centaur-tabs-do-close
 
   ;; Winmove
@@ -76,15 +109,13 @@
   "wK" 'windmove-up
   "wL" 'windmove-right
 
-  ;; Which Tab
-  "hw" 'whichkey-show-full-major-mode
-
   ;; Wincmd Binds
   "wh" 'evil-window-left
   "wj" 'evil-window-down
   "wk" 'evil-window-up
   "wl" 'evil-window-right
   "wd" 'evil-window-delete
+  "wo" 'other-window
   "ws" 'split-window-vertically
   "w|" 'split-window-horizontally
   "w<" 'windresize-left
@@ -93,24 +124,61 @@
   "w-" 'windresize-down
   )
 
+;; G BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
-  :states '(insert)
+  :states 'normal
   :keymaps 'override
-      ;"<escape>"   'keyboard-quit	    
-      "<space>"    '(lambda () (interactive) (insert " "))
-      "C-SPC"      'company-complete
-      )
+  :prefix "g"
 
+  "t" 'helm-imenu
+  "s" 'helm-swoop
+  "o" 'helm-occur
+  ;"k" 'helm-show-kill-ring
+  "f" 'helm-find-files
+  "p" 'helm-projectile-find-file
+
+  )
+;; INSERT ONLY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++
+(general-def
+  :states 'insert
+  :keymaps 'override
+					;"<escape>"   'keyboard-quit
+  "<space>"    '(lambda () (interactive) (insert " "))
+  "C-SPC"      'company-complete
+  )
+
+;; ALL BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
   :states '(insert normal visual emacs global)
   :keymaps 'override
-      "<mouse-4>"    'evil-previous-line
-      "<mouse-5>"   'evil-next-line
+
+  ;"<mouse-4>"    'evil-previous-line
+  ;"<mouse-5>"   'evil-next-line
   )
+
+;; COMPANY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
   :keymaps 'company-active-map
-      "SPC"    'nil
-      "RET"   'company-complete-selection
+
+  "SPC"   nil
+  "RET"   'company-complete-selection
   )
-(define-key company-active-map (kbd "SPC") nil)
-(define-key company-active-map (kbd "RET") #'company-complete-selection)
+
+;; MODE SPECIFIC EVIL BINDS
+;; ORG BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+(general-def
+  :states 'normal
+  :keymaps 'org-mode-map
+  :prefix "g"
+
+  "mj" 'pdf-page-down
+  "mk" 'pdf-page-up
+  )
+
+(general-def
+  :states 'normal
+  :keymaps 'org-mode-map
+  :prefix "SPC"
+
+  "ms" 'org-download-screenshot
+  )
