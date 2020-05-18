@@ -58,21 +58,19 @@
  ; "w" 'whichkey-show-major-mode
 
   ;; IDE Binds
-  "id"   'realgud
+  "ig"   'realgud
   "im"    'projectile-compile-project
   ;"im"   'helm-make-projectile
   ;"if"   'format-all-buffer
   "if"   'lsp-format-buffer
-  
+  "id" 'lsp-ui-doc-glance
+  ;"if" 'lsp-format-buffer
 
   ;; Helm Binds
   "SPC" 'helm-M-x
 
   ;; LSP Binds
-  "ld" 'lsp-ui-doc-glance
-  "lf" 'lsp-format-buffer
-
-  ;; File Binds
+    ;; File Binds
   "ff" 'helm-find-files
 
   ;; Project Binds

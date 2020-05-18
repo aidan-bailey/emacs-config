@@ -1,0 +1,287 @@
+* Introduction
+  Machine learning borrows from areas of /Computer Science/, /Statistics/, and /Artificial
+  Intelligence/.
+** Useful ML Diagram
+    
+[[file:Introduction/2020-05-14_09-30-56_screenshot.png]]
+
+** Types of Learning 
+  * Supervised Learning
+  * Unsupervised Learning
+  * Reinforcement Learning
+** Approaches to AI
+   * *Good Old Fashioned AI (GOFAI)* 
+      (Symbolic Artificial Intelligence) AI as a collection of methods based on
+      high-level /symbolic/ representation of problems.
+   * *Biologically Inspired AI*
+      Inspired by /self-organizing/ biological processes and patterns.
+*** GOFAI
+   _Central Hypothesis_
+   Knowledge -> Symbols
+   Intelligence -> Symbol Manipulation
+
+   _Logic_
+   *Symbols*: AND, OR, NOT, A, B
+   *Expressions*: TRUE or FALSE statements
+   *Process*: Logical deductions
+**** Human Comparison
+|               | *Symbols*             | *Expressions*           | *Processes* |
+|---------------+-----------------------+-------------------------+-------------|
+| Human Thought | Encoded in our brains | Our thoughts            | Thinking    |
+| AI /Thought/  | Data structures       | Sets of data structures | Programs    |
+**** GOFAI Algorithms
+    - Decision trees.
+    - MINIMAX, Alpa-Beta Pruning
+    - Monte-Carlo Search
+    - Rule (Knowledge) Based Systems / Bayesian Interface (Expert Systems)
+    - Concept Learning
+*** Biologically Inspired AI
+   Involves individual components self-organizing to product global behaviours.
+
+   - Artificial Neural Networks (ANNs)
+   - Reinforcement Learning (RL)
+** AI Level
+*** Weak AI
+    Work with constrained problem sets and use specific techniques to simulate
+    intelligent decisions.
+
+    This is where the majority of today's research is located.
+
+    Important to note that is kind of AI does not try to solve the problem of
+    general intelligence, just specified tasks.
+*** Strong AI
+    Machines that are actually thinking like people.
+
+    * *Turing Test*
+      Can a panel of judges tell the difference between a machine and human during
+      conversation/interview?
+**** ELIZA
+    ELIZA fooled people with clever heuristics.
+
+    - Keyword-based transformation of text input produces response.
+    - Keyword spotting.
+    - Pattern recognition.
+    - Transformation rules.
+*** Chinese Room Analogy
+    1. *Person* in room speaks English but not Mandarin.
+    2. She receives notes in Mandarin.
+    3. She has an English *rule-book* for how to write new Chinese characters given input Chinese characters.
+    4. She returns new *notes*.
+| Object    | Explanation |
+|-----------+-------------|
+| Person    | CPU         |
+| Rule-book | AI          |
+| Notes     | Data        |
+    From an outside observers perspective, the person within the room speaks fluent Chinese.
+
+ 
+** The Learning Problem
+   * *Machine Learning (ML)*
+   algorithms to optimize a performance criterion using example data or past experience.
+* Dimensionality Reduction
+  - *Multivariate-Data*
+     data points defined by /multiple features/
+  Dimensionality reduction involves separating multivariate-data into /N components/
+  (the most /important features/ that define and represent the data) as a means of
+  reducing the data-set into a /new representation/ of the data defined by its most
+  important features.
+
+  The /components/ are found through an approach known as *Independent Component Analysis (ICA)*
+  while the /reducing/ is defined through an approach called *Principal Component Analysis (PCA)*.
+** Linear Dimensionality Reduction
+    We have *N data-points x_1, ..., x_N* which we want to transform by extracting /data-points/
+    that have some particular features associated with them. This will give us a new /reduced/
+    set of *M data-points y_1, ..., y_M* where *M < N*.
+
+    This sort of /transformation/ is known as mapping. There's no one systematic way to
+    generate non-linear transforms, but a common approach is to use a *mapping matrix*.
+    We /multiply/ the *dataset* by the *mapping matrix*. Though this is only one of many methods
+    that can be used.
+
+** Feature Selection
+   The first approach to /dimensionality reduction/. Choosing a subset of all the features present
+   in the data-set and extracting the data-points that have these features.
+** Feature Extraction
+   Given a set of data-points, we want to find a *sub-set* of these data-points that have some
+   *specific features that best represent the overall pattern of the data*. These extracted
+   features are then associated with a new subset of points. 
+
+   For this to be done, a function is used to extract the /subset/ of data-points that have
+   the /representative/ features. This function performs a *mapping* between the input (X) and
+   /extracted-features/ (Y) data-set. The implementation of this function depends on the
+   input data-set and the features we want to extract.
+*** Categories of Feature Extraction Algorithms
+**** Signal Representation Feature Extraction
+    Algorithms using the *Signal Representation* approach extract representative features of a data-set
+    and map them to a low-dimensional space (for easier visualization).
+**** Signal Classification Feature Extraction
+    Algorithms using the *Signal Classification* approach /extract and enhance/ differences between
+    subsets of the data based on differences between /features/ of the data.
+**** Comparison Example
+#+BEGIN_EXAMPLE
+Consider a data-space defined by two features: feature 1 and feature 2.
+In this example, the concerning data is audio, where each datapoint is a person talking.
+Feature 1 is tone and Feature 2 is volume
+
+SIGNAL REPRESENTATION
+We find a representative feature to extract, e.g. if volume is roughly consistent for all
+data-points, whereas tone is quite variable, then we extract feature 2 as the representative
+feature by a signal classification algorithm. The data-space has thus been reduced from two
+to one dimension.
+
+SIGNAL CLASSIFICATION
+We want to separate data-points that are most represented by feature 1 (having highest
+tonality levels) versus data-points that are most represented by feature 2 (having the
+highest volume levels).
+Hence, in this case we classify each data-point as being best represented
+by feature 1 or feature 2.
+#+END_EXAMPLE
+ 
+*** Independent Component Analysis (ICA)
+    A feature-extraction method that uses an approach known as *blind source separation (BSS)*.
+
+    The assumption made by *ICA* is that different independent signals (features associated with
+    data-points) are generated by different underlying physical processes (e.g. different speakers),
+    where many signals are sent /concurrently/, and thus there is a mixture of /N/ different signal
+    types for a greater number of data-points.
+    
+    *Signals* (features associated with different data points) are said to be /independent/ if the 
+    value of one signal cannot be used to predict anything about the corresponding value of the
+    other signal.
+**** Classification Approach
+     *ICA* is a classification approach to /feature extraction/, since for any data-set, *ICA* separates
+     the data-set into /N/ groups of data-points (classifications) according to statistical
+     independence between /N/ features (associated with data-points).
+
+*** Principle Component Analysis (PCA)
+    *PCA* is a signal representation approach to feature extraction. It is usually applied to
+    high dimensional data-sets since it allows us to do dimensionality reduction.
+    
+    Specifically, PCA is used to find relevant structure in data-sets, such that the
+    data associated with these representative features can be mapped to a low-dimensional
+    space.
+    
+    These /representative features/ are known as *principal components*, where these components
+    allows us to identify the principal directs in which data varies.
+
+    Features are simply variables associated with the data-points and the principal components
+    are composites of these variables.
+    
+    *PCA* often reveals relationships between variables that were not previously suspected and
+    as such *PCA* is often used as pre-processing step for other further machine learning.
+
+** Cocktail Party Problem
+   An example of when we'd like to apply the classification approach to feature selection.
+#+BEGIN_EXAMPLE
+There are many people at a social gathering where everyone is talking at the same time and as
+such, if we listen to the group as a whole it just sounds like an incoherent noise. The problem
+is thus to identify the features (in the audio of each persons voice) that would allow each
+distinct conversation to be identified and classified as different from every other conversation.
+
+1. Identify which features are most representative of all conversations.
+2. Apply a classifcation feature-extraction to separate N data-points (N conversations) from each
+other based on these representative features.
+#+END_EXAMPLE
+
+* Reinforcement Learning
+  #+BEGIN_EXAMPLE
+  "Imagine playing a new game whose rules you don't know; after a hundred or so
+  moves, your opponent announces, 'You lose'."
+  -Russel and Norvig
+  #+END_EXAMPLE
+  Learning how to /map states to actions/ to maximize a numerical reward value
+  over time.
+
+  A /multi-stage decision making/ process.
+
+  An *RL agent* must learn through /trial-and-error/.
+
+  *Agent actions* may affect not only *immediate reward* but also *future rewards
+  (through *Reward Signals*).
+** Components of an RL Agent
+[[file:Reinforcement_Learning/2020-05-18_13-53-40_screenshot.png]]
+  - *POLICY* (Agent's Behaviour)
+    Map from states to actions (Stochastic or Deterministic)
+  - *REWARD FUNCTION*
+    Maps each state-action pair to a real number (reward).
+  - *VALUE FUNCTION* (Value of a State : State-Action Pair)
+    Total expected reward, starting from a given state and following a policy.
+  - *MODEL*
+    Agent's representation of its environment.
+*** S,T,A,R
+    - *STATE* (S)
+    - *TRANSITION* (T)
+    - *AGENT* (A)
+    - *REWARD* (R)
+*** Reward Function Examples
+    - *HELICOPTER CONTROL*      + *+VE* reward for following desired trajectory.
+      + *-VE* reward for /NOT/ following desired trajectory.
+    - *GO PLAYING AGENT*
+      + *+VE* reward for winning game.
+      + *-VE* reward for losing game.
+    - *HUMANOID ROBOT CONTROL*
+      + *+VE* reward for forward motion.
+      + *-VE* reward for falling over.
+** Representing Actions
+   - *DETERMINISTIC ACTIONS*
+     + /T: S x A -> S/
+     + For each state and action we specify a new state.
+[[file:Reinforcement_Learning/2020-05-18_14-12-25_screenshot.png]]
+   - *STOCHASTIC ACTIONS*
+      + /T: S x A -> Prob(S)/
+      + For each state and action we specify a probability distribution over
+	next states.
+      + Represent the distribution /P(s'|s, a).
+
+[[file:Reinforcement_Learning/2020-05-18_14-15-23_screenshot.png]]
+
+** Representing Solutions
+   A *policy* π is a mapping from /S/ to /A/.
+   - _FOLLOWING A POLICY π_
+     1. Determine the current state /s/.
+     2. Execute action π(/s/).
+     3. Goto step 1.
+   *Goal: Select actions to maximise total future reward.*
+*** Evaluating a Policy
+    - *DETERMINISTIC ACTIONS*
+      just total the rewards gained from following policy π.
+    - *STOCHASTIC ACTIONS*
+      total /expected total reward/ obtained from following policy π.
+** RL Model
+   A model predicts what the environment will do next.
+   - State Transition & Reward Distribution
+   - *P* predicts the next state.
+   - *R* preficts reward of a state.
+[[file:Reinforcement_Learning/2020-05-18_14-26-27_screenshot.png]]
+** RL Algorithm Types
+   - *MODEL-BASED*
+     + S,T,A,R given: Learn the optimal policy.
+     + e.g. Value iteration or policy iteration with given transition and
+       reward functions.
+   - *MODEL-FREE*
+     + Must first learn the transition and reward functions.
+     + e.g. Q-Learning, Direct-evaluation.
+*** Model-Based RL
+    Set of *states* /S/, set of *actions* /A/.
+    
+    *Transition probabilities* to next states /T(a ,s ,s')/.
+
+    *Reward function* /R(s)/.
+
+    Use /T/ and /R/ to derive optimal policy.
+*** Model-Free RL
+    Set of *states* /S/, set of *actions* A.
+    
+    *Transition function* is /not known/.
+    
+    *Reward function* is /not known/.
+    
+    Learn /T/ and /R/ and use them to estimate optimal policy.
+** Exploration vs. Exploitation
+   Agent must discover a good policy from trial and error learning, maximising
+   the reward along the way.
+   - *EXPLORATION*
+     Finds more information about the environment.
+   - *EXPLOITATION*
+     Exploits known information to maximise reward.
+   *RL algorithms* must balance /exploration/ vs /exploitation/.

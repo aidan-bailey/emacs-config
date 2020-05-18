@@ -1,0 +1,413 @@
+% Created 2020-05-10 Sun 16:25
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 26.3 (Org mode 9.1.9)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+Not saying these are better than Josiah's, just saying I prefer them\ldots{}
+From emacs with love.
+
+\section{Introduction}
+\label{sec:org256bce1}
+
+\subsection{The Internet}
+\label{sec:org6e64230}
+
+A network of networks. Allows the World Wide Web a means for existence.
+
+\uline{Nuts and Bolts}
+\begin{itemize}
+\item \textbf{Users}
+
+\begin{itemize}
+\item Millions of connected devices.
+
+\item \emph{hosts} as end systems.
+
+\item running \emph{network applications}.
+\end{itemize}
+
+\item \textbf{Communication Links}
+
+\begin{itemize}
+\item a \emph{medium} of communication.
+
+\item fibre, copper, radio satellite.
+\end{itemize}
+
+\item \textbf{Packet Switches}
+
+\begin{itemize}
+\item \emph{routers} and \emph{switches,}
+
+\item Help forward the \emph{packets} (chunks of data).
+\end{itemize}
+
+\item \textbf{Internet}
+
+\begin{itemize}
+\item Interconnected ISPs.
+\end{itemize}
+
+\item \textbf{Protocols}
+
+\begin{itemize}
+\item Control \emph{sending} and \emph{receiving} of messages.
+
+\item TCP, IP, HTTP, Skype, 802.11
+\end{itemize}
+
+\item \textbf{Internet Standards} 
+
+\begin{itemize}
+\item \emph{RFC}: Request for Comments
+
+\item \emph{IETF}: Internet Engineering Task Force
+\end{itemize}
+\end{itemize}
+
+
+\subsection{Protocols}
+\label{sec:org961a8cc}
+
+Protocols are sets of instructions for a communication over a specific medium.
+
+Specific messages are sent -------> Specific messages are received
+
+\uline{Define}
+\begin{itemize}
+\item \emph{Format} of messages
+\item \emph{Order} of sending and receiving
+\item \emph{Actions taken} on message transmission and receipt
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{ll}
+Human & Computer\\
+\hline
+Hi & TCP connection request\\
+Hey & TCP connection response\\
+What's the time? & Get \url{http://www.uct.ac.za/index.html}\\
+It's 9am & <file>\\
+\end{tabular}
+\end{center}
+
+\begin{enumerate}
+\item Protocol Layers
+\label{sec:orgcc30f9f}
+
+Since networks are composed of many different complex pieces, we need to organize 
+our protocols in layers.
+
+\begin{center}
+\begin{tabular}{llll}
+Hosts & Routers & Links & Hardware\\
+Applications & Protocols & Hardwards & Software\\
+\end{tabular}
+\end{center}
+
+Each layer will therefore implement a \emph{service} (through its own internal-layer actions), which in
+turn rely on services provided by layer below.
+
+It helps with \uline{Complex Systems}
+
+\begin{itemize}
+\item The \emph{explicit structure} of layers allows identification and relationship of complex system's
+pieces.
+
+\item \emph{Modularization} eases maintenance and updating of system.
+\end{itemize}
+
+\begin{enumerate}
+\item Airline Travel
+\label{sec:orgfb1ff41}
+
+\begin{center}
+\begin{tabular}{lllll}
+ticket (\emph{purchase}) &  &  & ticket (\emph{complain}) & \textbf{ticket}\\
+baggage (\emph{check}) &  &  & baggage (\emph{claim}) & \textbf{baggage}\\
+gates (\emph{load}) &  &  & gates (\emph{unload}) & \textbf{gate}\\
+runway (\emph{takeoff}) &  &  & runway (\emph{land}) & \textbf{takeoff/landing}\\
+airplane routing & airplane routing & airplane routing & airplane routing & \textbf{airplane routing}\\
+ &  &  &  & \\
+\end{tabular}
+\end{center}
+departure  ------>  air-traffic control centers  ------>  arrival
+\end{enumerate}
+
+
+\item ISO/OSI
+\label{sec:org4991286}
+Since there are \emph{n users of the computer networks scattered throughout the world,
+the /International Organisation of Standardization} (ISO) has developed a standard for how 
+systems are to communicate. This standard is called an \emph{Open System Interconnection} (OSI) and can
+be referred to as the \textbf{ISO/OSI Reference Model}.
+
+\begin{enumerate}
+\item \underline{ISO/OSI Reference Model}
+\label{sec:org48aae96}
+
+\begin{center}
+\begin{tabular}{lrll}
+Level & Number & Layer Name & Description\\
+\hline
+\uline{Upper} & 7 & Application & Supporting network applications.\\
+" & 6 & Presentation & How data is to be represented in various signals for transmission.\\
+" & 5 & Session & Mainly responsible for checkpointing and recovery. Also handles authorization and authentication.\\
+\uline{Middle} & 4 & Transport & Provides the logical communication between application processes running on different hosts.\\
+" & 3 & Network & Routing of packets/datagrams from source to destination.\\
+\uline{Lower} & 2 & Data Link & Handles vice-versa bit-by-bit conversion between data streams and signals to be used by underlying hardware.\\
+" & 1 & Physical & Defines how raw-bits are to be transported over a medium.\\
+\end{tabular}
+\end{center}
+
+\item \underline{Internet Protocol Stack and TCP/IP Suite}
+\label{sec:org539f3ca}
+The \emph{Internet Protocol Stack} is a conceptual model and set of commmunication protocols used to 
+satisfy the ISO/OSI reference model for internet communication (as well as many other 
+computer networks).
+
+
+\begin{center}
+\begin{tabular}{ll}
+Layer Name & Associated Protocols\\
+\hline
+Application & File Transfer Protocol (FTP), Simple Mail Transfer Protocol (SMTP), HyperText Transfer Protocol (HTTP)\\
+Transport & Transmission Control Protocol (TCP), User Datagram Protocol (UDP)\\
+Network & Internet Protocol (IP), \emph{various routing protocols}\\
+Data Link & Ethernet, 802.11\\
+Physical & "on the wire" bit transfer\\
+\end{tabular}
+\end{center}
+
+\uline{There are 2 layers missing?}
+Both the \emph{presentation layer} and the \emph{session layer}, if required, must be implemented by within the
+application itself.
+
+\item \underline{ISO/OSI Diagram}
+\label{sec:orgedf5dc9}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Introduction/2020-05-09_11-55-09_screenshot.png}
+\end{center}
+\href{https://community.fs.com/blog/tcpip-vs-osi-whats-the-difference-between-the-two-models.html}{image reference}
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+\subsection{Network Structure}
+\label{sec:orgd547286}
+
+\subsubsection{Scale and Scope}
+\label{sec:org6f7361c}
+
+\begin{enumerate}
+\item LAN (Local Area Network)
+\label{sec:org7fa4fac}
+A network of interconnected hosts that covers a small geographical region (e.g. a house, a school,
+etc..).
+
+\item MAN (Metropolitan Area Network)
+\label{sec:orgf5bdf25}
+A network of interconnected hosts that covers a geographical region the size of a metropolitan
+area (e.g. Google's new wifi towers in the Cape Flats).
+
+\item WAN (Wide Area Network)
+\label{sec:org99b12c8}
+A network of interconnected hosts that cover an extremely large geographical region (e.g. the 
+internet is a WAN).
+\end{enumerate}
+
+
+
+\subsubsection{Transmission Mode}
+\label{sec:orga72b2ed}
+
+\begin{enumerate}
+\item Unicast
+\label{sec:orgc14b053}
+Message sent by \emph{one} sender to \emph{one} receiver.
+
+\textbf{S -> R}
+
+\item Multicast
+\label{sec:orgb1b2aed}
+Message sent by one sender to a set/list of recipients.
+
+\textbf{S} -> \textbf{[R\(_{\text{1,R}}\)\(_{\text{2,R}}\)\(_{\text{3}}\)]}
+
+\item Anycast
+\label{sec:org4ff3837}
+Message sent by one sender to any one member of a set (usually the node closest to the sender). 
+
+\textbf{S} -> \textbf{R\(_{\text{1}}\)} | \textbf{R\(_{\text{2}}\)} | \textbf{R\(_{\text{3}}\)}
+
+\item Broadcast
+\label{sec:org775f657}
+Message sent by one sender to everyone.
+
+\textbf{S} -> \textbf{R\(_{\text{(1..n)}}\)}
+\end{enumerate}
+
+
+\subsubsection{Regions}
+\label{sec:org5673f33}
+\begin{enumerate}
+\item Network Edge
+\label{sec:org70fb00d}
+\emph{Hosts} dwell here. Generally categorized as \emph{clients} and \emph{servers}.
+
+\item Access Networks / Physical Media
+\label{sec:org9511b48}
+Wired and wireless communication links, commonly managed by \emph{Internet Service Providers} (ISPs).
+
+\item Network Core
+\label{sec:orgf27baba}
+Interconnected routers producing a network of networks (the internet).
+
+\begin{enumerate}
+\item Packet Switching
+\label{sec:orgc4d6662}
+A message is broken up into many different packets which are sent independently down their 
+individual optimum network paths, being forwarded from router to router until they reach their
+destination.
+
+\begin{enumerate}
+\item Packets
+\label{sec:org065bf99}
+
+\begin{itemize}
+\item \textbf{Header} - contains addresses and other data required for the packet to reach its destination.
+
+\item \textbf{Payload} - actual data being sent.
+\end{itemize}
+\end{enumerate}
+
+\item Routing
+\label{sec:org59ef082}
+Determines the route from source to destination taken by the packet.
+
+\item Forwarding
+\label{sec:org7ce1e6c}
+Directs packet from router's input to appropriate router output.
+\end{enumerate}
+\end{enumerate}
+
+
+\subsubsection{Network of Networks}
+\label{sec:orga172ea0}
+Important to note that the evolution of the \emph{network of network} that composes the internet is driven
+by \textbf{economic} and \textbf{national policies} (obviously, that's why ISPs suck).
+
+Do to the sheer number of potential users of the internet, it is downright impossible to connect
+every individual network together. For this reason, \textbf{access ISPs} (Internet Service Providers) have
+been established as administrators and connection hubs for large clusters of networks.
+
+When pondering how in turn these (millions of) ISPs should communicate with eachother, we come
+across a few options.
+
+\begin{enumerate}
+\item \uline{Connect each access ISP to every other access ISP?}
+\end{enumerate}
+
+This scales horribly - O(N\(^{\text{2}}\)) connections!
+
+\begin{enumerate}
+\item \uline{Connect each access ISP to a global transit ISP (a central hub)?}
+\end{enumerate}
+
+This seems viable but who will control this? If it looks good competitors will join the game.
+
+\begin{enumerate}
+\item \uline{Hierarchal ISP Structure} (winner)
+\end{enumerate}
+
+\begin{enumerate}
+\item Current Topology
+\label{sec:org6f4ae0f}
+
+
+\uline{Pre-Defs}
+
+\begin{itemize}
+\item \textbf{Peering} - neither party pays for the other in exchange of traffic, they rather souly gain
+revenue from their own customers.
+
+\item \textbf{IP Transit} - money is exchanged between parties that agree to peer with one another.
+\end{itemize}
+
+\uline{Baseline}
+
+\begin{center}
+\begin{tabular}{rlll}
+Tier & Description & Peering Policy & Examples\\
+\hline
+1 & Exchange traffic with other \emph{Tier 1 providers} & \emph{Strict} peering agreements (mostly Tier 2 ISPs and Content Provider Networks) & Hibernia Networks, Cogent Communications\\
+2 & Exchanges traffic between the \emph{Tier 1 and Tier 3 providers} & \emph{Settlement-Free} peering (neither party pays but rather attains revenue from its own customers) & Vodafone, British Telekom, GTT Communications\\
+3 & Purchases internet transit from Tier 2 providers and delivers internet access to end systems (homes, schools, etc.) & \emph{IP Transit} with Tier 2 providers & Mweb, Afrihost, Telkom, Neotel, <your-provider-here>\\
+\end{tabular}
+\end{center}
+
+\uline{ISP Connections}
+
+\begin{itemize}
+\item \textbf{Internet Exchange Point (IXP)} - a point where multiple ISPs interconnect so
+\end{itemize}
+the internet can exist.
+
+
+\begin{itemize}
+\item \textbf{Peering Link} - traffic exchange points for multiple ISPs (for \emph{peering}).
+\end{itemize}
+
+\uline{Extras}
+
+\begin{itemize}
+\item \textbf{Content Provider Networks} (like Google, Microsoft, etc..) - may have their own external networks
+\end{itemize}
+to allow faster service delivery. These networks can harbour connections to any ISP as well as
+IXPs
+
+\begin{itemize}
+\item \textbf{Regional ISPs/Nets} (classified as a \emph{WAN}) - Act as hubs for geographically clustered access ISPs
+\end{itemize}
+in order to interface with global ISPs (and Content Provider Networks). Examples including \emph{openserve},
+\emph{frogfoot}, and \emph{neotel}.
+
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Introduction/2020-05-10_14-16-25_screenshot.png}
+\end{center}
+
+\href{https://upload.wikimedia.org/wikipedia/commons/3/36/Internet\_Connectivity\_Distribution\_\%26\_Core.svg}{image reference}
+
+\begin{center}
+\includegraphics[width=.9\linewidth]{Introduction/2020-05-10_14-20-07_screenshot.png}
+\end{center}
+\end{enumerate}
+\end{document}

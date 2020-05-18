@@ -1,0 +1,30 @@
+* Sequential Logic
+  
+[[file:Sequential_Logic/2020-05-07_07-47-57_screenshot.png]]
+
+A logic circuit whereby the output is not only based on the input signals, but also on the
+sequence of past inputs.
+
+** Types
+*** Synchronous
+    State changes in step with timing signal.
+*** Asynchronous
+    State changes whenever input changes.
+
+
+** 1-Bit Storage Elements
+
+   /Latches/ and /Flip-Flops/ store *state information*.
+
+   1 Flip-Flop holds 1-bit of information.
+
+*** SR-Latch
+    
+    *Duel Sets*: Set, Reset (hence the name)
+    
+    
+[[file:Sequential_Logic/2020-05-07_08-08-32_screenshot.png]] 
+ 
+    
+*** D-Latch
+    

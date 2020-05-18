@@ -1,0 +1,105 @@
+#include "HuffmanNode.h"
+#include <iostream>
+#include <memory>
+using namespace BLYAID001;
+using namespace std;
+
+// Default Constructor
+HuffmanNode::HuffmanNode(void) : symbol('a'),
+                                 frequency(0),
+                                 right(nullptr),
+                                 left(nullptr),
+                                 isLeaf(false){};
+
+// Copy Constructor
+HuffmanNode::HuffmanNode(const HuffmanNode &rhs) :
+    left(rhs.left),
+    right(rhs.right)
+{
+    symbol = rhs.symbol;
+    frequency = rhs.frequency;
+    isLeaf = rhs.isLeaf;
+}
+
+// Move Constructor
+HuffmanNode::HuffmanNode(HuffmanNode &rhs) : symbol(move(rhs.symbol)),
+                                             frequency(move(rhs.frequency)),
+                                             right(move(rhs.right)),
+                                             left(move(rhs.left))
+{
+    isLeaf = rhs.isLeaf;
+}
+
+// Copy Operator
+HuffmanNode &HuffmanNode::operator=(const HuffmanNode &rhs)
+{
+    symbol = rhs.symbol;
+    frequency = rhs.frequency;
+    right = rhs.right;
+    left = rhs.left;
+    isLeaf = rhs.isLeaf;
+    return *this;
+}
+
+// Move Operator
+HuffmanNode &HuffmanNode::operator=(HuffmanNode &rhs)
+{
+    symbol = move(rhs.symbol);
+    frequency = move(rhs.frequency);
+    right = move(rhs.right);
+    left = move(rhs.left);
+    isLeaf = move(rhs.isLeaf);
+    rhs.right = nullptr;
+    rhs.left = nullptr;
+    return *this;
+}
+
+// Destructor
+HuffmanNode::~HuffmanNode(void)
+{
+}
+
+// Paramaterized Leaf Constructor
+HuffmanNode::HuffmanNode(const char symb, const int freq) :
+    left(nullptr),
+    right(nullptr)
+{
+    isLeaf = true;
+    symbol = symb;
+    frequency = freq;
+}
+
+// Paramaterized Branch Constructor
+HuffmanNode::HuffmanNode(HuffmanNode l, HuffmanNode r)
+{
+    left = std::make_shared<HuffmanNode>(l);
+    right = std::make_shared<HuffmanNode>(r);
+    isLeaf = false;
+    symbol = 'a';
+    frequency = l.frequency + r.frequency;
+}
+
+// Getters
+bool HuffmanNode::getIsLeaf(){
+    return isLeaf;
+}
+
+char HuffmanNode::getSymbol(){
+    return symbol;
+}
+
+int HuffmanNode::getFrequency(){
+    return frequency;
+}
+
+HuffmanNode* HuffmanNode::getLeft(){
+    return left.get();
+}
+
+HuffmanNode* HuffmanNode::getRight(){
+    return right.get();
+}
+
+bool BLYAID001::operator<(const HuffmanNode& a, const HuffmanNode& b){
+    return a.frequency < b.frequency;    
+}

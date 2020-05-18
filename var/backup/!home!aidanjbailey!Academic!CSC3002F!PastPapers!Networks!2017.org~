@@ -1,0 +1,42 @@
+* Question 1
+A.
+  Application
+  - Local DNS server is probed for hostname translation. 
+  - Sends an HTTP request to transport layer.
+
+  Transport
+  - Sends a TCP connection request.
+    
+  Network
+  - Using Internet Protocol as well as various routing protocols to determine the requests route to
+    its destination.
+
+  Data Link
+  - Uses either Ehternet Protocol (if wired) or 802.11 Protocol (if wireless) to convert the request
+    bit-by-bit into a format that can be delivered over the wire.
+
+  Physical
+  - Actualy transmits of signals over a medium.
+
+B. 
+If required, they are implemented into the Application layer.  
+
+* Question 2
+a) 
+  * client-server
+  * peer-to-peer
+
+b)
+data integrity
+
+c)
+  * Control: increase cwnd by 1 MSS every RTT until loss detected
+  * Slow Start: double cwnd every RTT until loss is detected whereby it goes back to 1
+
+d)
+Transport Layer
+
+e)
+Star topology: So all UCTs traffic to the internet goes through the router.
+
+f)

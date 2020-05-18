@@ -1,0 +1,159 @@
+* DNS 
+
+1. *nslookup www.tencent.com*                 
+
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+www.tencent.com canonical name = upfile.wj.qq.com.cloud.tc.qq.com.
+upfile.wj.qq.com.cloud.tc.qq.com        canonical name = ssd.tcdn.qq.com.
+Name:   ssd.tcdn.qq.com
+Address: 150.109.206.154
+Name:   ssd.tcdn.qq.com
+Address: 150.109.206.166
+Name:   ssd.tcdn.qq.com
+Address: 150.109.206.115
+
+2. *nslookup -type=NS uct.ac.za*              
+
+Server:         192.168.1.1
+Address:        192.168.1.1#53
+
+Non-authoritative answer:
+uct.ac.za       nameserver = ucthpx.uct.ac.za.
+uct.ac.za       nameserver = rain.psg.com.
+uct.ac.za       nameserver = netman.uct.ac.za.
+uct.ac.za       nameserver = dns3.uct.net.za.
+
+Authoritative answers can be found from:
+rain.psg.com    internet address = 147.28.0.34
+dns3.uct.net.za internet address = 105.30.22.170
+ucthpx.uct.ac.za        internet address = 137.158.128.1
+netman.uct.ac.za        internet address = 137.158.128.4
+rain.psg.com    has AAAA address 2001:418:1::34
+ucthpx.uct.ac.za        has AAAA address 2001:43f8:75::3
+netman.uct.ac.za        has AAAA address 2001:43f8:75::4
+
+3. *nslookup mail.google.com ucthpx.uct.ac.za* 
+
+Server:         ucthpx.uct.ac.za
+Address:        137.158.128.1#53
+
+\*\*server can't find mail.google.com: REFUSED
+
+4. _8.8.8.8_
+*nslookup mail.google.com 8.8.8.8*         
+
+Server:         8.8.8.8
+Address:        8.8.8.8#53
+
+Non-authoritative answer:
+mail.google.com canonical name = googlemail.l.google.com.
+Name:   googlemail.l.google.com
+Address: 172.217.170.37
+Name:   googlemail.l.google.com
+Address: 2c0f:fb50:4002:800::2005
+
+_9.9.9.9_
+*nslookup mail.google.com 9.9.9.9*
+
+Server:         9.9.9.9
+Address:        9.9.9.9#53
+
+Non-authoritative answer:
+mail.google.com canonical name = googlemail.l.google.com.
+Name:   googlemail.l.google.com
+Address: 216.58.223.133
+Name:   googlemail.l.google.com
+Address: 2c0f:fb50:4002:800::2005
+
+_1.1.1.1_
+*nslookup mail.google.com 1.1.1.1*
+
+Server:         1.1.1.1
+Address:        1.1.1.1#53
+
+Non-authoritative answer:
+mail.google.com canonical name = googlemail.l.google.com.
+Name:   googlemail.l.google.com
+Address: 172.217.170.37
+Name:   googlemail.l.google.com
+Address: 2c0f:fb50:4002:805::2005
+
+
+5. UDP
+
+6. 53
+
+7. Yes
+
+8. Standard Query
+
+9. 2
+
+_REQUEST_
+
+[[file:DNS/2020-05-08_15-10-10_screenshot.png]]
+
+_RESPONSE_
+
+[[file:DNS/2020-05-08_15-09-03_screenshot.png]]
+
+10. No
+
+* TCP
+
+11. IP: 192.168.1.62
+Source Port: 55394
+
+12. gaia.cs.umass.edu IP: 128.119.245.12
+
+13. Port No. = 443
+
+[[file:DNS/2020-05-10_21-31-50_screenshot.png]]
+
+* ICMP
+[[file:ICMP/2020-05-10_21-49-54_screenshot.png]]
+
+[[file:ICMP/2020-05-10_21-51-11_screenshot.png]]
+ 
+14. IP of Host: 192.168.1.62
+IP of Destination: 172.217.170.3
+
+15. ICMP is not designed to communicate information between application layer processes but rather between
+hosts and routers, therefore no port numbers are required.
+
+16. Type: 8 (Echo (ping) request)
+Code: 0
+Other Fields: Checksum, Identifier, Sequence number, Timestamp, Data
+No. of bytes in checksum: 2
+No. of bytes in sequence number: 2
+No. of bytes in identifier: 2
+
+[[file:ICMP/2020-05-10_22-00-24_screenshot.png]]
+
+18. IP of Host: 192.168.1.62
+
+19. IP of Target Destination: 172.217.170.3
+
+
+[[file:ICMP/2020-05-10_22-06-30_screenshot.png]]
+
+
+[[file:ICMP/2020-05-10_22-10-28_screenshot.png]]
+
+18. IP of Host: 192.168.1.62
+
+19. IP of Destination: 172.217.170.67
+
+20. No, it would be 17 (for udp)
+
+21. The icmp ping query does not wrap additional IP and UDP information.
+
+22. IPv4 and UDP information.
+
+23. They are dropped packets. The last hop returns a ICMP Destination Unreachable error since the UDP packet
+hits the random UDP port we're probing (between 33434 and 33534) meaning we've reached the final
+destination.
+

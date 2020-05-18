@@ -1,0 +1,36 @@
+#ifndef KMEANHELPER_HPP
+#define KMEANHELPER_HPP
+#include "PPMHelper.hpp"
+#include <iostream>
+#include <string>
+#include <vector>
+
+namespace BLYAID001 {
+
+struct KNode {
+public:
+  int ClusterNo = -1;
+  std::string ImageName;
+  std::vector<int> Histogram;
+  ~KNode(void) { Histogram.clear(); }
+};
+
+class KMeanHelper {
+private:
+  int _clusterCount;
+  int _binSize;
+  std::vector<KNode> _features;
+
+  void generateHistogram(std::vector<int> &histogram, PPMHelper &ppmHelper);
+  float calculateDistance(std::vector<int> &f, std::vector<int> &i);
+
+public:
+  KMeanHelper(int clusterCount, int binSize);
+  ~KMeanHelper(void);
+  int AddImage(PPMHelper &ppmHelper);
+  int LloydsAlgorithm(void);
+  int GetBucketCount(void);
+};
+
+} // namespace BLYAID001
+#endif

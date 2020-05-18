@@ -1,0 +1,142 @@
+* Introduction
+  An operating system is *just a program*.
+
+  A program that lets you run *other programs*.
+  - _UNIX OS (1972)_
+    Rewritten in C to move UNIX kernel code from assembly to high level language
+    (do same tasks with less code).
+  - _MICROSOFT WINDOWS_
+    *MS Windows* kernel developed mostly in C (some in assembly).
+  - _MAC OS_
+    *OS X* kernel is written mostly in C.
+  - _MOBILE_
+    *iOS*, *Android* and *Windows Phone* kernels are also coded in C. 
+** Resource Control
+   - CPU
+   - Memory
+   - Devices: Display, Keyboard, Mouse
+   - Persisten Storage
+   - Network
+** System Software
+   Software designed to provide a platform for other software.
+   - _EXAMPLES_
+     + C Compiler and Library Functions
+     + Database Management System
+     + _Operating System_
+       Software that operates directly with system hardward.
+** Illusionist Government Analogy
+   - _ILLUSIONIST_
+     Clever resource management to overcome hardware limitations.
+   - _GOVERNMENT_
+     + *Protect* users from one another.
+     + *Allocates* resources efficiently and fairly.
+     + *Provides* and environment within which other programs can do useful things.
+** System View
+   - _RESOURCE ALLOCATOR_
+     + Manages all resources.
+     + Handles conflicting requests for efficient & fair resource use.
+   - _CONTROL PROGRAM_
+     + Controls execution of programs.
+     + Prevents errors.
+     + Ensures programs run.
+** Abstraction
+   - _INTERFACE_
+     Between users and computer (/hardware/).
+   - _CONVENIENCE_
+     Hides tedious stuff.
+   - _EFFICIENCY AND CONTROL_
+     - Allocates resources.
+     - Allows parallel application.
+     - Protects information.
+*** Reality versus Abstraction
+| Reality                          | Abstraction                     |
+|----------------------------------+---------------------------------|
+| A Single CPU                     | Multiple CPUs (through threads) |
+| Limited RAM Capacity             | Infinite Capacity               |
+| Mechanical Disk                  | Memory Speed Access             |
+| Insecure and Unreliable Networks | Reliable and Secure             |
+| Many Physical Machines           | A Single Machine                |
+[[file:Introduction/2020-05-17_19-32-47_screenshot.png]]
+ 
+*** Why have Abstractions?
+    - Reduce functional complexity.
+    - Provide single abstraction over multiple devices.
+    - _RESOURCE SHARING_
+      + Efficiency
+      + Fairness
+      + Security
+*** Examples of Abstraction
+    - _USER ABSTRACTIONS_
+[[file:Introduction/2020-05-17_19-37-22_screenshot.png]]
+
+    - _DISK ABSTRACTIONS_
+[[file:Introduction/2020-05-17_19-38-33_screenshot.png]]
+
+    - _PROCESS ABSTRACTIONS_
+[[file:Introduction/2020-05-17_19-39-13_screenshot.png]]
+** OS Abstractions
+   - Files
+   - Programs
+   - Threads of Control
+   - Communication
+   - Windows & Graphics
+   - Input Devices
+*** Files
+     Reading, writing, copying, cutting and other familiar file operations
+     can be done without worrying about the actual manipulation of data on the
+     physical disk.
+*** Programs
+     Programming code and the data it uses is an abstraction of the underlying
+     hardware layers full of 1s and 0s.
+*** Memory Sharing
+    The *CPU* can only load instructions only from memory so programs the cpu is
+    currently busy with must be stored there. However, *RAM* is both volatile
+    and rather short in supply for a computer.
+    
+    For this reasonm external storage
+    such as *HDDs* and *SSDs* are used to store programs until they are required
+    by the *CPU*. 
+
+    The *OS* can run multiple programs concurrently via swapping programs between
+    main memory and secondary storage.
+*** Virtual Memory
+    An *OS* is able to smoothly run multiple programs in parallel with the help of
+    *virtual memory*. 
+
+    *Virtual memory* allows the execution of programs that are not completely in
+    main memory by partitioning sections of secondary storage to temporarily hold
+    programs that will eventually be transferred to main memory for execution.
+    
+    This extra memory can also be used to store program data.
+
+    
+*** Resource Sharing
+    One of the most important tasks of an *OS*. To manage and allocated resources
+    so as they are effectively and efficiently shared accross all processes and
+    users of the OS.
+
+    *Resource sharing* is made possible by *virtual memory*. Programs use virtual
+    memory to share the space of limited *main memory*. The sharing of memory
+    by multiple programs is called *multiplexing*. This is where mutliple
+    multiple programs are partially loaded into memory and the rest is
+    kept in virtual memory.
+
+    *Multiplexing* occurs on both the *CPU* and *RAM*. Programs are executed in brief
+    *slices* of CPU time with /rapid switching/ between them (to give the illusion
+    of seamless concurrent program execution* occurs on both the *CPU* and *RAM*. Programs are executed in brief
+    *slices* of CP time with /rapid switching/ between them (to give the illusion
+    of seamless concurrent program execution).
+** OS as a Virtual Machine
+   The idea of a *virtual machine* is that ach process seems to execute on its /own/ 
+   *processor* with its /own/ *memory*, and *devices*.
+
+   This is necessary since the running of any *OS* mandates that the /limited/
+   resources of the *physical machine* must be shared.
+   
+   That is, *virtual devices* are /sliced out/ of the *physical ones* (i.e. *virtual
+   memory* is an /abstraction/ of *physical memory*).
+[[file:Introduction/2020-05-17_20-25-28_screenshot.png]]
+ 
+*** Application Virtual Machines
+    *VMs* emulate physical machines and provide interfaces to the OS Application
+    layer.

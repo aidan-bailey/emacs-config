@@ -1,0 +1,33 @@
+AIDAN's CLUSTERERERER README+~+~
+
+Driver:
+Contains main method and error throwing. Used to call on the KMeanHelper and PPMHelper classes.
+
+PPMHelper:
+Parses PPM files, storing their contents for easy reading and manipulation.
+
+KMeanHelper:
+Performs KMean algorithm on inputted ppmhelper images.
+
+::USAGE::
+cluster <dataset> <optional-flag-args> 
+
+::REQUIRED::
+<dataset>                        Directory location of ppm files.
+
+::OPTIONAL::
+-o <output_filename>             Name of the desired output file. (DEFAULT: std::cout)
+-k <n>                           Number of clusters to be generated. (DEFAULT: 10)
+-bin <b>                         Specifies the width of generated histograms. (DEFAULT: 1)
+-colour                          Images retain their colour instead of converting to greyscale
+-mean                            Use average distance determined centroid initialization opimization
+
+::HELPFUL-NOTES::
++ The <dataset> argument can either be the name of a directory in the same directory as the
+executable or simply an absolute/relative path to a directory anywhere on the system.
+Wild cards can be used. The program will automatically operate on all files with a .ppm extension
+found in the specified directory, no need to state them explicitly. This has been tried and tested
+on linux but in theory should work on windows as well. Code was found and ammended from a
+stackoverflow post. The link is commented in the code.
++ The "mean" flag doesn't necessarily these pictures rocognition more accurate, though it should for
+a more diverse set of images. 

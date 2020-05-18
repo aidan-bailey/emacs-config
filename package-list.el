@@ -103,7 +103,10 @@
 ;; Syntax Checking +++++++++++++++++++++++++++++++++
 
 (use-package flycheck)
-(use-package flycheck-inline)
+;(use-package flycheck-inline
+;  :config
+;    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+(use-package flycheck-tip)
 (use-package quick-peek)
 (use-package format-all)
 
@@ -111,12 +114,10 @@
 
 (use-package lsp-mode
   :init
-  (setq lsp-enable-snippet t))
-:config
-(add-hook 'prog-mode-hook #'lsp)
-(use-package lsp-ui
-  :init
-  (setq lsp-ui-doc-enable nil))
+  (setq lsp-enable-snippet t)
+  :config
+  (add-hook 'prog-mode-hook #'lsp))
+(use-package lsp-ui)
 (use-package lsp-treemacs
   :config
   (lsp-treemacs-sync-mode 1))
