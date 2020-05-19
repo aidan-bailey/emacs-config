@@ -31,13 +31,15 @@
  '(lsp-ui-doc-delay 0.9)
  '(lsp-ui-doc-enable nil)
  '(lsp-ui-doc-header t)
- '(lsp-ui-doc-use-webkit nil)
+ '(lsp-ui-doc-use-webkit t)
  '(lsp-ui-flycheck-list-position (quote right))
  '(lsp-ui-sideline-enable nil)
  '(lsp-ui-sideline-show-diagnostics t)
  '(lsp-ui-sideline-show-hover t)
  '(org-download-screenshot-method "spectacle -br -o %s")
- '(package-selected-packages (quote (evil-magit company-c-headers use-package))))
+ '(package-selected-packages
+   (quote
+    (transient git-commit evil magit company evil-magit company-c-headers use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

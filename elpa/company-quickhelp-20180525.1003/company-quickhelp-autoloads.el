@@ -41,10 +41,6 @@ See `company-quickhelp-local-mode' for more information on Company-Quickhelp-Loc
 
 ;;;***
 
-;;;### (autoloads nil nil ("company-quickhelp-pkg.el") (0 0 0 0))
-
-;;;***
-
 ;; Local Variables:
 ;; version-control: never
 ;; no-byte-compile: t

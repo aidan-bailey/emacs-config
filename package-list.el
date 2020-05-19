@@ -82,7 +82,7 @@
   :after evil)
 (use-package evil-org
   :after evil)
-(use-package evil-magit)
+;(use-package evil-magit)
 
 ;; Helm ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -103,10 +103,10 @@
 ;; Syntax Checking +++++++++++++++++++++++++++++++++
 
 (use-package flycheck)
-;(use-package flycheck-inline
-;  :config
-;    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
-(use-package flycheck-tip)
+(use-package flycheck-inline
+  :config
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+;(use-package flycheck-tip)
 (use-package quick-peek)
 (use-package format-all)
 
@@ -126,8 +126,8 @@
 
 ;; Version Control
 
-(use-package magit)
-(use-package forge)
+;(use-package magit)
+;(use-package forge)
 
 ;; Language Servers +++++++++++++++++++++++++++++++++++
 

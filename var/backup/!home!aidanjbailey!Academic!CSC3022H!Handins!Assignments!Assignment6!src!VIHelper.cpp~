@@ -1,2 +1,65 @@
 #include "VIHelper.hpp"
-  
+#include "GridWorld.hpp"
+#include <cmath>
+#include <iostream>
+
+using namespace BLYAID001;
+using namespace std;
+
+VIHelper::VIHelper(void) = default;
+VIHelper::~VIHelper(void) = default;
+
+void VIHelper::Start(void) {
+  cout << "VIHelper::Start() called..." << endl;
+  int iterCount(0);
+  bool idle(false);
+  while (true) {
+    idle = true;
+    iterCount++;
+    for (int i = 0; i < 3; i++)
+      for (int j = 0; j < 2; j++) {
+        state *current = &_grid(i, j);
+        for (auto iter : current->Actions) {
+          float newValue =
+              RewardFunction(*current, *iter) + discountFactor * iter->V;
+          if (newValue > current->Vf && current->V != newValue) {
+            current->Vf = newValue;
+            idle = false;
+          }
+        }
+      }
+    if (idle)
+      break;
+    cout << this->toString() << endl;
+    for (int j = 0; j < 2; j++)
+      for (int i = 0; i < 3; i++)
+        if (_grid(i, j).Vf > _grid(i, j).V)
+          _grid(i, j).V = _grid(i, j).Vf;
+  }
+  cout << "VIHelper::Start() completed!" << endl;
+}
+int VIHelper::RewardFunction(state &s, state &d) {
+  if (d != _grid(2, 0))
+    return 0;
+  if (s == _grid(1, 0))
+    return 50;
+  if (s == _grid(2, 1))
+    return 100;
+  return 0;
+}
+
+
+ostream &BLYAID001::operator<<(std::ostream &os, VIHelper &vi) {
+  os << vi.toString();
+  return os;
+}
+
+string VIHelper::toString(void){
+  string result;
+  for (int j = 0; j < 2; j++) {
+    for (int i = 0; i < 3; i++)
+      result = result + to_string(_grid(i, j).V) + "|";
+    result += '\n';
+  }
+  return result;
+}
