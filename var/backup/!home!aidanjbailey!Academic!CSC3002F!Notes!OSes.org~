@@ -136,7 +136,143 @@
    That is, *virtual devices* are /sliced out/ of the *physical ones* (i.e. *virtual
    memory* is an /abstraction/ of *physical memory*).
 [[file:Introduction/2020-05-17_20-25-28_screenshot.png]]
- 
 *** Application Virtual Machines
     *VMs* emulate physical machines and provide interfaces to the OS Application
-    layer.
+    layer. i.e. they allow us to execute entire operating systems simultanously on
+    a single machine.
+
+    - _JAVA VIRTUAL MACHINE (JVM)_
+    A popular example of a virtual machine. it allows Java code to be portable
+    between various hardware and OS platforms by running Java *bytecode*.
+ 
+** Concurrency vs Parallelism
+   - _CONCURRENCY_
+     Can exist on single *CPU* via multi-tasking OS and additional CPU cores.
+   - _PARALLELISM_
+     Speed-up via /N/ computations in parallel.
+*** Parallelism
+    The computer system has /N/ *CPUs* or a single *CPU* has /N/ *cores*,
+    meaning that /N/ programs are able to truly run in /parallel/.
+*** Concurrency
+    Multiple programs (processes) running on a single *core*.
+* Memory Management I
+** Memory Hierarchy
+| Level:                    | 1                | 2              | 3                | 4                | 5                |
+|---------------------------+------------------+----------------+------------------+------------------+------------------|
+| Name:                     | registers        | cache          | main memory      | solid state disk | magnetic disk    |
+| Typical Size:             | < 1KB            | < 16MB         | < 64GB           | < 1 TB           | < 10 TB          |
+| Implementation Technology | custom memory    |                |                  |                  |                  |
+| Access Time: (ns)         | 0.25 - 0.5       | 0.5 - 25       | 80 - 250         | 25,000 - 50,000  | 5,000,000        |
+| Bandwidth: (MB/sec)       | 20,000 - 100,000 | 5,000 - 10,000 | 1,000 - 5,000    | 500              | 20 - 150         |
+| Managed by:               | compiler         | hardware       | operating system | operating system | operating system |
+| Backed by:                | cache            | main memory    | disk             | disk             | disk or tape     |
+** Virtual Resources
+   - _PHYSICAL REALITY_
+     Different processes (threads) share the same hardware.
+     1. *Multiplex CPU* (Scheduling/Concurrency)
+     2. *Multiplex use of Memory* (Virtual Memory)
+
+   - _IMPORTANT OF MEMORY SHARING_
+     + Complete working state of a process (and kernel) is defined by its
+       data in memory.
+     + Different *processes* must not use the same *physical memory*.
+     + Different processes must not access each other's memory (except when
+       they have to).
+** Memory Multiplexin
+   - _PROTECTION_
+     + Prevent *memory* /access/ by other processes.
+     + Different *memory chunks* (/pages/) are given /special access/.
+     + *Kernal data* protected from user programs.
+     + Programs protected from themselves.
+   - _CONTROLLED OVERLAP_
+     + Usually a *process* (thread) states should not access same
+       physical memory address which could result in unexpected overlap
+       (chaos!).
+     + But, we would like process states to overlap in some cases.
+     + Inter-process communication!
+   - _TRANSLATION_
+     + Mapping accesses from one *virtual* to *physical* address space.
+     + *CPU* uses /virtual address/.
+     + *RAM* uses physical addresses.
+
+[[file:Memory_Management/2020-05-20_17-05-14_screenshot.png]]
+** Cache Memory
+   *Computer memory* with very short access time - used for storage of frequently
+   used instructions or data.
+   
+   This is found on a computers *CPU* and has low
+   memory capacity but is very fast. This is where all the instructions used
+   by the CPU are kept. This is found in CPU Registers.
+   
+   Other cache memory is implemented as blocks of memory used for temporary
+   storage of data that is frequently used. This can be attached to *CPU*
+   or other kinds of storage like *hard-drives*, *sshd*, etc.
+** Intel Core i7 Memory System
+[[file:Memory_Management/2020-05-20_17-55-04_screenshot.png]]
+ 
+** Memory Management Problems
+*** Memory Translation
+    There are many processes that can be assigned *logical memory addresses*,
+    (e.g. using /64 bit/ *memory addresses*) but there are relatively few
+    *physical addresses.*
+   
+    This enables the OS to have a great many processes assigned
+    *virtual memory addresses&, the number of actual memory addresses
+    available in *physical main memory* is very small by comparison.
+
+    The *Memory Translation Problem* involves how the OS /maps/ (translates) a very
+    large number of process memory addresses to a very small number of memory
+    process addresses, such that all processes are able to be periodically
+    swapped in and out of main (*physical*) memory and run effectively and
+    efficiently.
+*** Memory Assignment
+    Closely related to the problem of memory assignment. 
+
+    Each process (after being scheduled to be swapped into main memory for
+    execution), will have its *virtual memory address* translated to a
+    *physical memory address*, but the assigned physical memory must be a
+    currently free chunk of main memory.
+
+    The *assigned chunk* of main memory must be sufficiently large to
+    temporarily store the assigned process, but not so large that there is
+    additional left-over memory (wasted while the process is executing).
+*** Memory Protection
+    Given that /n/ processes have been assigned *virtual memory addresses*,
+    /translated/ to *physical memory addresses* and assigned to be run at
+    these main memory addresses, the problem remains that main memory capacity
+    is significantly limited so the /n/ processes must often share main memory
+    addresses.
+    
+    Some form of *memory protection* is therefore required to ensure that
+    processes that are /assigned/ to the same *physical memory address* do not
+    access this common *virtual memory address* at the same time.
+*** Memory Sharing
+    Closely related to the *memory sharing* problem.
+    
+    The /n processes/ (scheduled to run and thus be swapped into main memory)
+    can share the /same address/ space in *physical main memory*. The problem
+    is that the /n processes/ must be suitably divided up so as all processes are
+    assigned a *physical memory* address and that an /approximately equal/
+    number of processes share a *physical address* in *main memory*.
+    
+    So, the *OS memory management* system must ensure effective sharing of each
+    specific physical main memory address. Specifically, that multiple processes 
+    are assigned to a given *physical memory address*, that the processes are
+    protected from each other, and that only one process is resident at the
+    *physical memory address*.
+* Memory Management II
+** Virtual Memory
+   _PROCESS_
+   - Made up of pieces (*pages or segments*).
+   - Processes do not need to be in *continuous* regions of *main memory*.
+   - Processes can be moved around *different regions* of *main memory*.
+   - Parts of a process need *not be in main memory*.
+   - Sum of *logical memory* (for all processes) can thus exceed
+     available physical memory.
+** Physical Memory Addresses
+   The *CPU* generates physical addresses in main memory. These addresses
+   generated by the *CPU* point directly to /bytes/ in *physical memory*.
+   
+   When the *CPU* assigns an executing process to *physical memory*, this
+   process is assigned a chunk of memory comprising /n/ data words.
+

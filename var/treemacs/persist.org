@@ -5,3 +5,7 @@
  - path :: ~/Academic/CSC3022H/Handins/Assignments/Assignment5
 ** Assignment6
  - path :: ~/Academic/CSC3022H/Handins/Assignments/Assignment6
+** Assignment1
+ - path :: ~/Academic/CSC3002F/OS/Assignment1
+** pycard
+ - path :: ~/Projects/Software/python/pycard

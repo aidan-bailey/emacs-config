@@ -16,24 +16,35 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(centaur-tabs-gray-out-icons (quote buffer))
  '(centaur-tabs-plain-icons t)
  '(centaur-tabs-set-modified-marker t)
  '(company-auto-complete nil)
+ '(company-auto-complete-chars (quote (32 95 40 41 119 46 39)))
+ '(company-box-icons-alist (quote company-box-icons-images))
+ '(company-box-show-single-candidate t)
  '(company-idle-delay 0)
  '(company-minimum-prefix-length 1)
- '(company-tooltip-limit 5)
+ '(company-require-match nil)
+ '(company-tooltip-limit 6)
+ '(company-tooltip-margin 2)
  '(flycheck-display-errors-delay 0)
  '(flycheck-tip-avoid-show-func nil)
  '(inhibit-startup-screen t)
  '(lsp-auto-guess-root nil)
  '(lsp-enable-snippet t)
  '(lsp-lens-auto-enable nil)
+ '(lsp-pyls-plugins-flake8-enabled t)
+ '(lsp-pyls-plugins-pycodestyle-enabled nil)
+ '(lsp-pyls-plugins-pyflakes-enabled nil)
  '(lsp-ui-doc-delay 0.9)
  '(lsp-ui-doc-enable nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-use-webkit t)
- '(lsp-ui-flycheck-list-position (quote right))
- '(lsp-ui-sideline-enable nil)
+ '(lsp-ui-flycheck-list-position (quote bottom))
+ '(lsp-ui-imenu-kind-position (quote left))
+ '(lsp-ui-sideline-delay 0)
+ '(lsp-ui-sideline-enable t)
  '(lsp-ui-sideline-show-diagnostics t)
  '(lsp-ui-sideline-show-hover t)
  '(org-download-screenshot-method "spectacle -br -o %s")
@@ -47,7 +58,9 @@
  ;; If there is more than one, they won't work right.
  '(centaur-tabs-selected ((t (:background "gray18" :foreground "dark orange" :overline "dark orange" :underline nil))))
  '(centaur-tabs-selected-modified ((t (:background "gray18" :foreground "dark orange" :overline "dark orange" :underline nil))))
+ '(company-box-annotation ((t (:foreground "dark orange"))))
  '(company-tooltip ((t (:background "#666666" :foreground "black" :weight bold))))
+ '(flycheck-error ((t (:underline "Red1"))))
  '(lsp-ui-doc-background ((t (:background "dim gray"))))
  '(lsp-ui-doc-header ((t (:background "#232323" :foreground "dark orange"))))
  '(lsp-ui-peek-peek ((t (:background "#3d3c3d"))))
@@ -72,14 +85,14 @@
 (define-fringe-bitmap 'flycheck-fringe-bitmap-ball
   (vector #b01100000
 	  #b00110000
-	  #b10011000
-	  #b01001100
-	  #b10100110
-	  #b01010011
-	  #b01010011
-	  #b10100110
-	  #b01001100
-	  #b10011000
+	  #b00011000
+	  #b10001100
+	  #b11000110
+	  #b01100011
+	  #b01100011
+	  #b11000110
+	  #b10001100
+	  #b00011000
 	  #b00110000
 	  #b01100000))
 
@@ -91,10 +104,10 @@
   :fringe-face 'flycheck-fringe-error
   :error-list-face 'flycheck-error-list-error)
 (flycheck-define-error-level 'warning
-  :severity 100
-  :compilation-level 2
-  :overlay-category 'flycheck-error-overlay
+  :severity 50
+  :compilation-level 1
+  :overlay-category 'flycheck-warning-overlay
   :fringe-bitmap 'flycheck-fringe-bitmap-ball
-  :fringe-face 'flycheck-fringe-error
-  :error-list-face 'flycheck-error-list-error)
+  :fringe-face 'flycheck-fringe-warning
+  :error-list-face 'flycheck-warning-list-error)
 

@@ -4,6 +4,8 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq scroll-step 1)
+(setq scroll-margin 1)
 (fringe-mode '(16 . 0))
 
 ;; Function Calls
@@ -13,13 +15,14 @@
 ;; Attributes
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
-                    :height 110
-                    :weight 'normal
+                    :height 100
+                    :weight 'demibold
                     :width 'normal)
 (set-face-attribute 'fringe nil :background "#2e2e2e" :foreground "#2e2e2e")
 
 ;; Hooks
 (add-hook 'prog-mode-hook #'company-mode)
+(add-hook 'prog-mode-hook #'linum-mode)
 
 ;; Variables
 (setq frame-title-format '(buffer-file-name "Emacs: %b (%f)" "Emacs: %b"))

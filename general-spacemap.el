@@ -18,7 +18,6 @@
       (set-window-buffer (split-window-horizontally) (cadr buffers)))))
 (add-hook 'emacs-startup-hook '2-windows-vertical-to-horizontal)
 
-
 (defun nin-origami-toggle-node ()
   (interactive)
   (save-excursion ;; leave point where it is
@@ -26,22 +25,22 @@
     (origami-toggle-node (current-buffer) (point))))                 ;; and try to fold
 
 (defun company-idle-toggle()
-  (interactive)
   "Toggle companies complete mode delay to near infinite."
+  (interactive)
   (if (= company-idle-delay 999999)
       (setq company-idle-delay 0)
     (setq company-idle-delay 999999)
     )
   )
-(setq flycheck-inline-display-function
-      (lambda (msg pos)
-        (unless (eq evil-state 'insert)
-	  (let* ((ov (quick-peek-overlay-ensure-at pos))
-		 (contents (quick-peek-overlay-contents ov)))
-	    (setf (quick-peek-overlay-contents ov)
-		  (concat contents (when contents "\n") msg))
-	    (quick-peek-update ov))))
-      flycheck-inline-clear-function #'quick-peek-hide)
+					;(setq flycheck-inline-display-function
+					;      (lambda (msg pos)
+					;        (unless (eq evil-state 'insert)
+					;	  (let* ((ov (quick-peek-overlay-ensure-at pos))
+					;		 (contents (quick-peek-overlay-contents ov)))
+					;	    (setf (quick-peek-overlay-contents ov)
+					;		  (concat contents (when contents "\n") msg))
+					;	    (quick-peek-update ov))))
+					;      flycheck-inline-clear-function #'quick-peek-hide)
 
 ;; Space Binds
 
@@ -54,23 +53,24 @@
   "s" 'term
 
   ;; Help binds
- ; "a" 'helm-apropos
- ; "w" 'whichkey-show-major-mode
+					; "a" 'helm-apropos
+					; "w" 'whichkey-show-major-mode
 
   ;; IDE Binds
   "ig"   'realgud
-  "im"    'projectile-compile-project
-  ;"im"   'helm-make-projectile
-  ;"if"   'format-all-buffer
+  "ic"    'projectile-compile-project
+					;"im"   'helm-make-projectile
+					;"if"   'format-all-buffer
   "if"   'lsp-format-buffer
   "id" 'lsp-ui-doc-glance
-  ;"if" 'lsp-format-buffer
+  "it" 'lsp-ui-imenu
+					;"if" 'lsp-format-buffer
 
   ;; Helm Binds
   "SPC" 'helm-M-x
 
   ;; LSP Binds
-    ;; File Binds
+  ;; File Binds
   "ff" 'helm-find-files
 
   ;; Project Binds
@@ -89,6 +89,11 @@
   "bm" 'buffer-menu
   "bb" 'bury-buffer
   "bu" 'unbury-buffer
+  "bf" 'format-all-buffer
+  "bh" 'buf-move-left
+  "bj" 'buf-move-down
+  "bk" 'buf-move-up
+  "bl" 'buf-move-right
 
   ;; Directory Binds
   "n" 'neotree-toggle
@@ -100,12 +105,6 @@
   "tl"  'centaur-tabs-forward
   "th"  'centaur-tabs-backward
   "td"  'centaur-tabs-do-close
-
-  ;; Winmove
-  "wH" 'windmove-left
-  "wJ" 'windmove-down
-  "wK" 'windmove-up
-  "wL" 'windmove-right
 
   ;; Wincmd Binds
   "wh" 'evil-window-left
@@ -120,6 +119,7 @@
   "w>" 'windresize-right
   "w+" 'windresize-up
   "w-" 'windresize-down
+  "ww" 'ace-swap-window
   )
 
 ;; G BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -129,29 +129,34 @@
   :prefix "g"
 
   "t" 'helm-imenu
+  "T" 'helm-imenu-in-all-buffers
   "s" 'helm-swoop
   "o" 'helm-occur
-  ;"k" 'helm-show-kill-ring
+					;"k" 'helm-show-kill-ring
   "f" 'helm-find-files
   "p" 'helm-projectile-find-file
+  "aw" 'evil-ace-jump-word-mode
+  "ac" 'evil-ace-jump-char-mode
+  "al" 'evil-ace-jump-line-mode
 
   )
 ;; INSERT ONLY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
-  :states 'insert
+  :states '(insert normal)
   :keymaps 'override
 					;"<escape>"   'keyboard-quit
   "<space>"    '(lambda () (interactive) (insert " "))
   "C-SPC"      'company-complete
   )
 
+
 ;; ALL BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
   :states '(insert normal visual emacs global)
   :keymaps 'override
 
-  ;"<mouse-4>"    'evil-previous-line
-  ;"<mouse-5>"   'evil-next-line
+					;"<mouse-4>"    'evil-previous-line
+					;"<mouse-5>"   'evil-next-line
   )
 
 ;; COMPANY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++

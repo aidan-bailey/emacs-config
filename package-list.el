@@ -34,16 +34,21 @@
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-(use-package linum-relative
-  :config
-  (add-hook 'prog-mode-hook #'linum-relative-mode))
-(use-package sublimity
-  :config
-  (require 'sublimity-scroll)
+;(use-package linum-relative
+;  :config
+;  (add-hook 'prog-mode-hook #'linum-relative-mode))
+;(use-package sublimity
+  ;:config
+  ;(require 'sublimity-scroll)
   ;(require 'sublimity-map)
   ;(require 'sublimity-attractive)
-  (sublimity-mode 1)
-  )
+  ;(sublimity-mode 1)
+;  )
+(use-package highlight-indent-guides
+  :init
+    (setq highlight-indent-guides-method 'character)
+  :config
+    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 (use-package spaceline
   :config
   (spaceline-spacemacs-theme))
@@ -58,6 +63,7 @@
   (centaur-tabs-mode)
   (centaur-tabs-headline-match)
   )
+(use-package buffer-move)
 
 ;; Hotkeys ++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -103,9 +109,9 @@
 ;; Syntax Checking +++++++++++++++++++++++++++++++++
 
 (use-package flycheck)
-(use-package flycheck-inline
-  :config
-    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+;(use-package flycheck-inline
+;  :config
+;    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 ;(use-package flycheck-tip)
 (use-package quick-peek)
 (use-package format-all)
@@ -117,7 +123,9 @@
   (setq lsp-enable-snippet t)
   :config
   (add-hook 'prog-mode-hook #'lsp))
-(use-package lsp-ui)
+(use-package lsp-ui
+  :init
+  (setq lsp-peek-enable t))
 (use-package lsp-treemacs
   :config
   (lsp-treemacs-sync-mode 1))
@@ -172,7 +180,10 @@
 
 ;; NAVIGATION +++++++++++++++++++++++++++++++++++++++++++++++
 
-(use-package neotree)
+;(use-package neotree)
+(use-package treemacs
+  )
+(use-package treemacs-evil)
 (use-package project-explorer)
 (use-package switch-window)
 (use-package ace-jump-mode)

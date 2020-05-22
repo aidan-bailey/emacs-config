@@ -2,26 +2,37 @@
 #include "GridWorld.hpp"
 #include <cmath>
 #include <iostream>
+#include <unistd.h>
+#include <stdlib.h>
 
 using namespace BLYAID001;
 using namespace std;
 
-VIHelper::VIHelper(void) = default;
+VIHelper::VIHelper(int x, int y, bool assignment) : width(x), height(y) {
+  width = x;
+  height = y;
+  assignmentMode = assignment;
+  _grid = new GridWorld(x, y, assignment);
+  cout << _grid;
+  iterCount = 0;
+};
 VIHelper::~VIHelper(void) = default;
 
 void VIHelper::Start(void) {
   cout << "VIHelper::Start() called..." << endl;
-  int iterCount(0);
   bool idle(false);
   while (true) {
     idle = true;
     iterCount++;
-    for (int i = 0; i < 3; i++)
-      for (int j = 0; j < 2; j++) {
-        state *current = &_grid(i, j);
-        for (auto iter : current->Actions) {
+    for (int i = 0; i < width; i++)
+      for (int j = 0; j < height; j++) {
+        state *current = (*_grid)(i, j);
+        if (current->Terminal | current->Obstruction)
+          continue;
+        for (vector<state *>::iterator iter = current->Actions.begin();
+             iter != current->Actions.end(); iter++) {
           float newValue =
-              RewardFunction(*current, *iter) + discountFactor * iter->V;
+              RewardFunction(*current, *iter[0]) + discountFactor * iter[0]->V;
           if (newValue > current->Vf && current->V != newValue) {
             current->Vf = newValue;
             idle = false;
@@ -30,36 +41,81 @@ void VIHelper::Start(void) {
       }
     if (idle)
       break;
-    cout << this->toString() << endl;
-    for (int j = 0; j < 2; j++)
-      for (int i = 0; i < 3; i++)
-        if (_grid(i, j).Vf > _grid(i, j).V)
-          _grid(i, j).V = _grid(i, j).Vf;
+    for (int j = 0; j < height; j++)
+      for (int i = 0; i < width; i++)
+        if ((*_grid)(i, j)->Vf > (*_grid)(i, j)->V)
+          (*_grid)(i, j)->V = (*_grid)(i, j)->Vf;
   }
+  traverseMap(*(*_grid)(0, 0));
+  system("clear");
   cout << "VIHelper::Start() completed!" << endl;
 }
 int VIHelper::RewardFunction(state &s, state &d) {
-  if (d != _grid(2, 0))
-    return 0;
-  if (s == _grid(1, 0))
-    return 50;
-  if (s == _grid(2, 1))
+  if (assignmentMode) {
+    if (d != *(*_grid)(2, 0))
+      return 0;
+    if (s == *(*_grid)(1, 0))
+      return 50;
+    if (s == *(*_grid)(2, 1))
+      return 100;
+  }
+  else if (d.Terminal)
     return 100;
   return 0;
 }
 
+void VIHelper::traverseMap(state &start) {
+  state *probe = &start;
+  float max(0);
+  state *next;
+  while (!probe->Terminal) {
+    for (vector<state *>::iterator iter = probe->Actions.begin();
+         iter != probe->Actions.end(); iter++) {
+      if (iter[0]->Terminal) {
+        next = iter[0];
+      }
+      else if (iter[0]->V > max) {
+        max = iter[0]->V;
+        next = iter[0];
+      }
+      if (next->X == probe->X) {
+        if (next->Y > probe->Y)
+          (probe->OptimumAction = 'k');
+        else
+          (probe->OptimumAction = 'j');
+      } else {
+        if (next->X > probe->X)
+          (probe->OptimumAction = 'l');
+        else
+          (probe->OptimumAction = 'h');
+      }
+    }
+    probe = next;
+    system("clear");
+    cout << *_grid << endl;
+    sleep(1);
+  }
+}
 
 ostream &BLYAID001::operator<<(std::ostream &os, VIHelper &vi) {
-  os << vi.toString();
+  os << "Iteration Count: " << vi.iterCount << endl;
+  for (int j = 0; j < vi.height; j++) {
+    for (int i = 0; i < vi.width; i++) {
+      string buffer;
+      if ((*vi._grid)(i, j)->Terminal)
+        buffer = "Terminal";
+      else if ((*vi._grid)(i, j)->Obstruction)
+        buffer = "Obstruction";
+      else
+        buffer = to_string((*vi._grid)(i, j)->V);
+      os << "State #" << (*vi._grid)(i, j)->Index << ": " << buffer << endl;
+    }
+  }
+  os << *vi._grid;
   return os;
 }
 
-string VIHelper::toString(void){
+string VIHelper::toString(void) {
   string result;
-  for (int j = 0; j < 2; j++) {
-    for (int i = 0; i < 3; i++)
-      result = result + to_string(_grid(i, j).V) + "|";
-    result += '\n';
-  }
   return result;
 }
