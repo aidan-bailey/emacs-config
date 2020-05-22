@@ -31,36 +31,24 @@
   (dashboard-setup-startup-hook))
 (use-package all-the-icons)
 (use-package emojify)
-(use-package rainbow-delimiters
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
-;(use-package linum-relative
-;  :config
-;  (add-hook 'prog-mode-hook #'linum-relative-mode))
-;(use-package sublimity
-  ;:config
-  ;(require 'sublimity-scroll)
-  ;(require 'sublimity-map)
-  ;(require 'sublimity-attractive)
-  ;(sublimity-mode 1)
-;  )
-(use-package highlight-indent-guides
-  :init
-    (setq highlight-indent-guides-method 'character)
-  :config
-    (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+(use-package rainbow-delimiters)
+					;(use-package linum-relative
+					;  :config
+					;  (add-hook 'prog-mode-hook #'linum-relative-mode))
+					;(use-package sublimity
+					;:config
+					;(require 'sublimity-scroll)
+					;(require 'sublimity-map)
+					;(require 'sublimity-attractive)
+					;(sublimity-mode 1)
+					;  )
+(use-package highlight-indent-guides)
 (use-package spaceline
   :config
   (spaceline-spacemacs-theme))
 (use-package windresize)
 (use-package centaur-tabs
-  :init
-  (setq centaur-tabs-set-bar 'over)
-  (setq centaur-tabs-style "bar")
-  (setq centaur-tabs-gray-out-icons 'buffer)
-  (setq centaur-tabs-set-icons t)
   :config
-  (centaur-tabs-mode)
   (centaur-tabs-headline-match)
   )
 (use-package buffer-move)
@@ -72,12 +60,7 @@
 
 ;; Evil Packages +++++++++++++++++++++++++++++++++++++++++++
 
-(use-package evil
-  :init
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1))
+(use-package evil)
 (use-package evil-collection
   :after evil
   :config
@@ -88,7 +71,7 @@
   :after evil)
 (use-package evil-org
   :after evil)
-;(use-package evil-magit)
+					;(use-package evil-magit)
 
 ;; Helm ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -96,73 +79,49 @@
   :after helm-core)
 (use-package helm-projectile
   :after projectile)
-(use-package helm-descbinds
-  :config
-  (helm-descbinds-mode))
+(use-package helm-descbinds)
 (use-package helm-swoop)
 (use-package helm-org-rifle)
 (use-package helm-make)
-(use-package projectile
-  :config
-  (projectile-mode +1))
+(use-package projectile)
 
 ;; Syntax Checking +++++++++++++++++++++++++++++++++
 
 (use-package flycheck)
-;(use-package flycheck-inline
-;  :config
-;    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
-;(use-package flycheck-tip)
+;;(use-package flycheck-inline
+;;  :config
+;;    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+;;(use-package flycheck-tip)
 (use-package quick-peek)
 (use-package format-all)
 
 ;; LSP Integration +++++++++++++++++++++++++++++++++++
 
-(use-package lsp-mode
-  :init
-  (setq lsp-enable-snippet t)
-  :config
-  (add-hook 'prog-mode-hook #'lsp))
-(use-package lsp-ui
-  :init
-  (setq lsp-peek-enable t))
-(use-package lsp-treemacs
-  :config
-  (lsp-treemacs-sync-mode 1))
+(use-package lsp-mode)
+(use-package lsp-ui)
+(use-package lsp-treemacs)
 (use-package helm-lsp
   :after lsp-mode)
 
 ;; Version Control
 
-;(use-package magit)
-;(use-package forge)
+;;(use-package magit)
+;;(use-package forge)
 
 ;; Language Servers +++++++++++++++++++++++++++++++++++
 
-(use-package ccls
-  :init
-  (setq ccls-executable "/usr/bin/ccls"))
+(use-package ccls)
 
 ;; COMPANY ++++++++++++++++++++++++++++++++++++++++++++
 
-(use-package company-quickhelp
-  :config
-  (company-quickhelp-mode))
-(use-package company-c-headers
-  :config
-  (add-to-list 'company-backends 'company-c-headers))
+(use-package company-quickhelp)
+(use-package company-c-headers)
 (use-package company-lsp
-  :after lsp-mode
-  :config
-  (add-to-list 'company-backends #'company-lsp))
-(use-package yasnippet
-  :config
-  (yas-global-mode 1))
+  :after lsp-mode)
+(use-package yasnippet)
 (use-package auto-yasnippet
   :after yasnippet)
-(use-package company-box
-  :config
-  (add-hook 'company-mode-hook 'company-box-mode))
+(use-package company-box)
 
 ;; Debugging ++++++++++++++++++++++++++++++++++++++++++
 
@@ -174,15 +133,12 @@
 (use-package org-bullets
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-(use-package org-download
-  :config
-  (add-hook 'dired-mode-hook 'org-download-enable))
+(use-package org-download)
 
 ;; NAVIGATION +++++++++++++++++++++++++++++++++++++++++++++++
 
-;(use-package neotree)
-(use-package treemacs
-  )
+;;(use-package neotree)
+(use-package treemacs)
 (use-package treemacs-evil)
 (use-package project-explorer)
 (use-package switch-window)
@@ -194,12 +150,9 @@
 ;; Misc Tools ++++++++++++++++++++++++++++++++++++++++++++++++
 
 (use-package undo-tree)
-(use-package smartparens
-  :config
-  (add-hook 'prog-mode-hook #'smartparens-mode))
+(use-package smartparens)
 
 ;; Help Packages +++++++++++++++++++++++++++++++++++++++++++++
-
 
 (use-package powerthesaurus)
 (use-package imenu-anywhere)
@@ -207,9 +160,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.pdf\\'" . pdf-view-mode)))
 (use-package helpful)
-(use-package which-key
-  :config
-  (which-key-mode))
+(use-package which-key)
 (use-package cheatsheet)
 (use-package origami
   :config

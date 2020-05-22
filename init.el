@@ -10,44 +10,14 @@
 (load-file "~/.emacs.d/package-list.el")
 ;; load Keymap
 (load-file "~/.emacs.d/general-spacemap.el")
+;; load package config
+(load-file "~/.emacs.d/package-config.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(centaur-tabs-gray-out-icons (quote buffer))
- '(centaur-tabs-plain-icons t)
- '(centaur-tabs-set-modified-marker t)
- '(company-auto-complete nil)
- '(company-auto-complete-chars (quote (32 95 40 41 119 46 39)))
- '(company-box-icons-alist (quote company-box-icons-images))
- '(company-box-show-single-candidate t)
- '(company-idle-delay 0)
- '(company-minimum-prefix-length 1)
- '(company-require-match nil)
- '(company-tooltip-limit 6)
- '(company-tooltip-margin 2)
- '(flycheck-display-errors-delay 0)
- '(flycheck-tip-avoid-show-func nil)
- '(inhibit-startup-screen t)
- '(lsp-auto-guess-root nil)
- '(lsp-enable-snippet t)
- '(lsp-lens-auto-enable nil)
- '(lsp-pyls-plugins-flake8-enabled t)
- '(lsp-pyls-plugins-pycodestyle-enabled nil)
- '(lsp-pyls-plugins-pyflakes-enabled nil)
- '(lsp-ui-doc-delay 0.9)
- '(lsp-ui-doc-enable nil)
- '(lsp-ui-doc-header t)
- '(lsp-ui-doc-use-webkit t)
- '(lsp-ui-flycheck-list-position (quote bottom))
- '(lsp-ui-imenu-kind-position (quote left))
- '(lsp-ui-sideline-delay 0)
- '(lsp-ui-sideline-enable t)
- '(lsp-ui-sideline-show-diagnostics t)
- '(lsp-ui-sideline-show-hover t)
- '(org-download-screenshot-method "spectacle -br -o %s")
  '(package-selected-packages
    (quote
     (transient git-commit evil magit company evil-magit company-c-headers use-package))))

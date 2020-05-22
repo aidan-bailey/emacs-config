@@ -4,6 +4,8 @@
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
+(setq evil-want-keybinding nil)
+(setq inhibit-startup-screen t)
 (setq scroll-step 1)
 (setq scroll-margin 1)
 (fringe-mode '(16 . 0))
