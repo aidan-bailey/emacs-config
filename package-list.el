@@ -32,16 +32,16 @@
 (use-package all-the-icons)
 (use-package emojify)
 (use-package rainbow-delimiters)
-					;(use-package linum-relative
-					;  :config
-					;  (add-hook 'prog-mode-hook #'linum-relative-mode))
-					;(use-package sublimity
-					;:config
-					;(require 'sublimity-scroll)
-					;(require 'sublimity-map)
-					;(require 'sublimity-attractive)
-					;(sublimity-mode 1)
-					;  )
+;;(use-package linum-relative
+;;  :config
+;;  (add-hook 'prog-mode-hook #'linum-relative-mode))
+(use-package sublimity
+  :config
+  (require 'sublimity-scroll)
+  ;;(require 'sublimity-map)
+  ;;(require 'sublimity-attractive)
+  (sublimity-mode 1)
+  )
 (use-package highlight-indent-guides)
 (use-package spaceline
   :config

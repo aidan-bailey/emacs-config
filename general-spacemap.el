@@ -32,15 +32,16 @@
     (setq company-idle-delay 999999)
     )
   )
-					;(setq flycheck-inline-display-function
-					;      (lambda (msg pos)
-					;        (unless (eq evil-state 'insert)
-					;	  (let* ((ov (quick-peek-overlay-ensure-at pos))
-					;		 (contents (quick-peek-overlay-contents ov)))
-					;	    (setf (quick-peek-overlay-contents ov)
-					;		  (concat contents (when contents "\n") msg))
-					;	    (quick-peek-update ov))))
-					;      flycheck-inline-clear-function #'quick-peek-hide)
+
+;;(setq flycheck-inline-display-function
+;;      (lambda (msg pos)
+;;        (unless (eq evil-state 'insert)
+;;	  (let* ((ov (quick-peek-overlay-ensure-at pos))
+;;		 (contents (quick-peek-overlay-contents ov)))
+;;	    (setf (quick-peek-overlay-contents ov)
+;;		  (concat contents (when contents "\n") msg))
+;;	    (quick-peek-update ov))))
+;;      flycheck-inline-clear-function #'quick-peek-hide)
 
 ;; Space Binds
 
@@ -53,18 +54,18 @@
   "s" 'term
 
   ;; Help binds
-					; "a" 'helm-apropos
-					; "w" 'whichkey-show-major-mode
+  ;; "a" 'helm-apropos
+  ;; "w" 'whichkey-show-major-mode
 
   ;; IDE Binds
   "ig"   'realgud
   "ic"    'projectile-compile-project
-					;"im"   'helm-make-projectile
-					;"if"   'format-all-buffer
+  ;;"im"   'helm-make-projectile
+  ;;"if"   'format-all-buffer
   "if"   'lsp-format-buffer
   "id" 'lsp-ui-doc-glance
   "it" 'lsp-ui-imenu
-					;"if" 'lsp-format-buffer
+  ;;"if" 'lsp-format-buffer
 
   ;; Helm Binds
   "SPC" 'helm-M-x
@@ -111,6 +112,10 @@
   "wj" 'evil-window-down
   "wk" 'evil-window-up
   "wl" 'evil-window-right
+  "wH" 'buf-move-left
+  "wJ" 'buf-move-down
+  "wK" 'buf-move-up
+  "wL" 'buf-move-right
   "wd" 'evil-window-delete
   "wo" 'other-window
   "ws" 'split-window-vertically
@@ -121,7 +126,6 @@
   "w-" 'windresize-down
   "ww" 'ace-swap-window
   )
-
 ;; G BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
   :states 'normal
@@ -165,6 +169,7 @@
 
   "SPC"   nil
   "RET"   'company-complete-selection
+  
   )
 
 ;; MODE SPECIFIC EVIL BINDS

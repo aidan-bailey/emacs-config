@@ -1,23 +1,28 @@
 ;; Base Configurations
 (let ((default-directory  "~/.emacs.d/extras"))
   (normal-top-level-add-subdirs-to-load-path))
+(add-to-list 'load-path "~/.emacs.d/extras/sidebar.el")
 
 ;; Load Theme
 (load-file "~/.emacs.d/extras/themes/afterglow-theme.el")
 ;; Load Base Configurations
 (load-file "~/.emacs.d/base-config.el")
+;; load package config
+(load-file "~/.emacs.d/package-vars.el")
 ;; Load Packages
 (load-file "~/.emacs.d/package-list.el")
+;; Load Hooks
+(load-file "~/.emacs.d/package-hooks.el")
+
 ;; load Keymap
 (load-file "~/.emacs.d/general-spacemap.el")
-;; load package config
-(load-file "~/.emacs.d/package-config.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(lsp-enable-snippet t)
  '(package-selected-packages
    (quote
     (transient git-commit evil magit company evil-magit company-c-headers use-package))))
