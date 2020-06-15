@@ -1,0 +1,62 @@
+#include "XORSolver.hpp"
+#include <stdlib.h>
+
+using namespace BLYAID001;
+using namespace std;
+
+XORSolver::XORSolver(void) {
+  // NandGate Initialization
+  NandGate = {0, {getInitWeight(), getInitWeight()}, {0, 0}, 0};
+  // OrGate Initialization
+  OrGate = {0, {getInitWeight(), getInitWeight()}, {0, 0}, 0};
+  // AndGate Initialization
+  AndGate = {0, {getInitWeight(), getInitWeight()}, {0, 0}, 0};
+}
+
+void XORSolver::think(void){
+  // Nand Analysis
+  activationFunction(NandGate);
+  // And Analysis
+  activationFunction(AndGate);
+  // Or Analysis
+  activationFunction(OrGate);
+}
+
+bool XORSolver::learn(int targetOutput){
+  // Nand Learning
+  perceptronRule(NandGate, targetOutput);
+  // And Analysis
+  perceptronRule(AndGate, targetOutput);
+  // Or Analysis
+  perceptronRule(OrGate, targetOutput);
+  return false;
+}
+
+void XORSolver::perceptronRule(Perceptron &perceptron, int targetOutput) {
+  double currentOutput = perceptron.State;
+  // Update Perceptron Paths
+  for (int i = 0; i < perceptron.Inputs.size(); i++){
+    double oldWeight = perceptron.Weights[i];
+    double input = perceptron.Inputs[i];
+    double newWeight = oldWeight + LEARNING_RATE * (targetOutput - currentOutput) * input;
+    perceptron.Weights[i] = newWeight;
+  }
+  // Update Bias
+  {
+    double oldBias = perceptron.Bias;
+    double newBias = oldBias -  LEARNING_RATE * (targetOutput - currentOutput) * 1;
+    perceptron.Bias = newBias;
+  }
+}
+
+void XORSolver::activationFunction(Perceptron &perceptron) {
+  double sum(0);
+  for (int i = 0; i < perceptron.Inputs.size(); i++)
+    sum += (perceptron.Weights[i] * perceptron.Inputs[i]);
+  sum += perceptron.Bias;
+  perceptron.State = sum > 0 ? 1 : 0;
+}
+
+double XORSolver::getInitWeight(void) {
+  return static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+}

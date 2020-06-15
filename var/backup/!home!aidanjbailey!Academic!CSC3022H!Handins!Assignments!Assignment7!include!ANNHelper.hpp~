@@ -1,0 +1,38 @@
+#ifndef ANNHELPER_HPP
+#include <map>
+#include <vector>
+
+namespace BLYAID001 {
+
+enum perceptron_type { InputLayer, HiddenLayer, OutputLayer, Bias };
+
+struct perceptron {
+  perceptron_type Type;
+  int Index;
+  float State;
+  std::vector<perceptron*> Connections;
+  std::vector<float> Weights;
+};
+
+class ANNHelper {
+
+private:
+  // Constants
+  const float LearningRate = 1;
+  const float bias = -0.3;
+
+  std::vector<std::vector<perceptron>> graph;
+  float perceptronRule(float oldWeight, float learningWeight,
+                       float targetOutput, float currentOutput, float input);
+  float activationFunction(perceptron & node);
+
+public:
+  ANNHelper();
+  void PopulateGraph(int input_count, int hidden_count, int output_count);
+  void BuildPaths();
+  void Train(int targetOutput, std::vector<float> inputList);
+  void Test();
+};
+}; // namespace BLYAID001
+
+#endif

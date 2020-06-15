@@ -1,0 +1,175 @@
+* File Structure
+** !Solution Items
+   Just project setup related files
+   - _.editorconfig_
+     Editor settings.
+   - _.gitignore_
+     Self-explanatory.
+   - _README.md_
+   - _sonar-project.properties_
+** Libraries
+   This is where the real Nop comes in.
+*** dbo
+    Contains database management tools.
+** Plugins
+   Various Nop-provided modules.
+** Presentation
+*** Nop.Web
+*** Nop.Web.Framework
+** Tests
+   Testing modules.
+
+
+* Stories
+** 23953
+   As a user, I want to be presented with a Products & Services page, so that I
+   can select products and services to purchase.
+*** Locations
+    *View*: Nop.Web/Views/ProductsAndServices/Index.cshtml
+*** Potential Followable Example
+    ShoppingCartModel.cs, Cart.cshtml
+*** Descriptions
+    Information will require formatting.
+**** Full Table
+ [[file:Stories/2020-05-25_13-59-26_screenshot.png]]
+ 
+**** Three States
+***** Unregistered User/Guest
+      Less detail than full table.
+      - User can click on *level 2* heading for additional detail.
+      - Add-to-cart button grayed out.
+****** Table Diagram
+
+ [[file:Stories/2020-05-25_14-18-53_screenshot.png]]
+
+***** Registered Private User
+      Shows availble products and services categories.
+      - Products/Services are selected through checkboxes.
+*** Questions 
+**** Login/Register Request in Products and Services.
+     Clicking products and services seems to direct you there anyway?
+*** Classes
+**** Service
+     An abstract class that holds a description,
+     - _equals method_
+     - _service description_
+     - _hash function_
+     - _ToString()_
+     - _==_
+     - _!=_
+**** TypedService: Service
+     Takes in *Type serviceType*, holds *Type ServiceType*, a *description*
+     - /Service ChangeType(Type newType)/: return a service of same kind but new type
+     - _equals(TypedService other)_
+     - _Equals(object obj)_
+     - _GetHashCode();_
+**** Application Builder
+* C#
+** Assembly
+   an assembly, which is a reusable, versionable and self-describing building block
+   of a common language runtime application. Collections of compiled types (classes and
+   other types) and *resources*. Stored in type *.exe* of *.dll*
+
+   All types in c# and as general in .NET Framework can reside only inside /Assemblies./
+   
+#+BEGIN_SRC java
+using System;
+using System.Reflection;
+
+public class Asmload0
+{
+    public static void Main()
+    {
+        // Use the file name to load the assembly into the current
+        // application domain.
+        Assembly a = Assembly.Load("example");
+        // Get the type to use.
+        Type myType = a.GetType("Example");
+        // Get the method to call.
+        MethodInfo myMethod = myType.GetMethod("MethodA");
+        // Create an instance.
+        object obj = Activator.CreateInstance(myType);
+        // Execute the method.
+        myMethod.Invoke(obj, null);
+    }
+}
+#+END_SRC
+
+#+BEGIN_SRC java
+using System;
+using System.Reflection;
+using System.Security.Permissions;
+
+[assembly:AssemblyVersionAttribute("1.0.2000.0")]
+
+public class Example
+{
+    private int factor;
+    public Example(int f)
+    {
+        factor = f;
+    }
+
+    public int SampleMethod(int x)
+    {
+        Console.WriteLine("\nExample.SampleMethod({0}) executes.", x);
+        return x * factor;
+    }
+
+    public static void Main()
+    {
+        Assembly assem = typeof(Example).Assembly;
+
+        Console.WriteLine("Assembly Full Name:");
+        Console.WriteLine(assem.FullName);
+
+        // The AssemblyName type can be used to parse the full name.
+        AssemblyName assemName = assem.GetName();
+        Console.WriteLine("\nName: {0}", assemName.Name);
+        Console.WriteLine("Version: {0}.{1}",
+            assemName.Version.Major, assemName.Version.Minor);
+
+        Console.WriteLine("\nAssembly CodeBase:");
+        Console.WriteLine(assem.CodeBase);
+
+        // Create an object from the assembly, passing in the correct number
+        // and type of arguments for the constructor.
+        Object o = assem.CreateInstance("Example", false,
+            BindingFlags.ExactBinding,
+            null, new Object[] { 2 }, null, null);
+
+        // Make a late-bound call to an instance method of the object.
+        MethodInfo m = assem.GetType("Example").GetMethod("SampleMethod");
+        Object ret = m.Invoke(o, new Object[] { 42 });
+        Console.WriteLine("SampleMethod returned {0}.", ret);
+
+        Console.WriteLine("\nAssembly entry point:");
+        Console.WriteLine(assem.EntryPoint);
+    }
+}
+
+/* This code example produces output similar to the following:
+
+Assembly Full Name:
+source, Version=1.0.2000.0, Culture=neutral, PublicKeyToken=null
+
+Name: source
+Version: 1.0
+
+Assembly CodeBase:
+file:///C:/sdtree/AssemblyClass/cs/source.exe
+
+Example.SampleMethod(42) executes.
+SampleMethod returned 84.
+
+Assembly entry point:
+Void Main()
+ */
+#+END_SRC
+ 
+** AppDomain
+   Represents an application domain, which is an isolated environment where applications
+   execute. This class cannot be inherited.
+
+   This is what waits patiently for application requests by consuming binaries. Third party
+   apps can be loaded into separate app domains.

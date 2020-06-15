@@ -1,0 +1,11 @@
+* About STM32F051C6
+** C Operator Precedence
+   |  Precedence | Category       | Syntax | Associativity |
+   |-------------+----------------+--------+---------------|
+   | Highest (0) | Postfix        |        | Left to Right |
+   |           1 | Unary          |        | Right to Left |
+   |           2 | Multiplication |        | Left to Right |
+   |           3 | Addition       |        | Left to Right |
+   |           4 | Shift          |        | Left to Right |
+   |           5 | Relational     |        | Left to Right |
+   |           6 | Equality       |        | Left to Right |

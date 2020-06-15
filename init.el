@@ -13,7 +13,6 @@
 (load-file "~/.emacs.d/package-list.el")
 ;; Load Hooks
 (load-file "~/.emacs.d/package-hooks.el")
-
 ;; load Keymap
 (load-file "~/.emacs.d/general-spacemap.el")
 

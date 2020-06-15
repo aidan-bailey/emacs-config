@@ -30,9 +30,14 @@
 (setq lsp-pyls-plugins-flake8-enabled t)
 (setq lsp-pyls-plugins-pycodestyle-enabled nil)
 (setq lsp-pyls-plugins-pyflakes-enabled nil)
+;;(setq lsp-csharp-server-path "/home/aidanjbailey/.emacs.d/extras/language-servers/omnisharp-roslyn")
 
 ;; Org-Download
 (setq org-download-screenshot-method "spectacle -br -o %s")
+
+;; Helm
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 20)
 
 ;; LSP-Ui
 (setq lsp-ui-doc-delay 0.9)

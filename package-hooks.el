@@ -27,6 +27,7 @@
 (add-hook 'emacs-startup-hook 'lsp-treemacs-sync-mode)
 (add-hook 'emacs-startup-hook 'yas-global-mode)
 (add-hook 'emacs-startup-hook 'which-key-mode)
+(add-hook 'emacs-startup-hook 'helm-autoresize-mode)
 
 ;; Prog-Mode-Hook
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
@@ -49,6 +50,7 @@
 (add-hook 'c++-mode-hook 'lsp)
 (add-hook 'java-mode-hook 'lsp)
 (add-hook 'python-mode-hook 'lsp)
+(add-hook 'csharp-mode-hook 'lsp)
 
 ;; Company Backends
 (add-to-list 'company-backend 'company-c-headers)

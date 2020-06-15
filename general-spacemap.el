@@ -45,8 +45,7 @@
 
 ;; Space Binds
 
-(general-def
-  :states 'normal
+(general-def :states 'normal
   :keymaps 'override
   :prefix "SPC"
 
@@ -103,9 +102,15 @@
   "TAB" 'origami-recursively-toggle-node
 
   ;; Tabs Binds
-  "tl"  'centaur-tabs-forward
-  "th"  'centaur-tabs-backward
-  "td"  'centaur-tabs-do-close
+"tl"  'centaur-tabs-forward
+"th"  'centaur-tabs-backward
+"td"  'centaur-tabs-do-close
+;;  "tt" 'awesome-tab-ace-jump
+;;  "tl" 'awesome-tab-forward
+;;  "th" 'awesome-tab-backward
+;;  "td" 'awesome-tab-kil
+;;  "tL" 'awesome-tab-move-current-tab-to-right
+;;  "tH" 'awesome-tab-move-current-tab-to-left
 
   ;; Wincmd Binds
   "wh" 'evil-window-left
@@ -124,7 +129,7 @@
   "w>" 'windresize-right
   "w+" 'windresize-up
   "w-" 'windresize-down
-  "ww" 'ace-swap-window
+  "ww" 'ace-window
   )
 ;; G BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 (general-def
@@ -136,7 +141,7 @@
   "T" 'helm-imenu-in-all-buffers
   "s" 'helm-swoop
   "o" 'helm-occur
-					;"k" 'helm-show-kill-ring
+  ;;"k" 'helm-show-kill-ring
   "f" 'helm-find-files
   "p" 'helm-projectile-find-file
   "aw" 'evil-ace-jump-word-mode
@@ -148,7 +153,7 @@
 (general-def
   :states '(insert normal)
   :keymaps 'override
-					;"<escape>"   'keyboard-quit
+  ;;"<escape>"   'keyboard-quit
   "<space>"    '(lambda () (interactive) (insert " "))
   "C-SPC"      'company-complete
   )
@@ -158,9 +163,8 @@
 (general-def
   :states '(insert normal visual emacs global)
   :keymaps 'override
-
-					;"<mouse-4>"    'evil-previous-line
-					;"<mouse-5>"   'evil-next-line
+  ;; "<mouse-4>"    'evil-previous-line
+  ;; "<mouse-5>"   'evil-next-line
   )
 
 ;; COMPANY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -169,7 +173,7 @@
 
   "SPC"   nil
   "RET"   'company-complete-selection
-  
+
   )
 
 ;; MODE SPECIFIC EVIL BINDS

@@ -47,11 +47,14 @@
   :config
   (spaceline-spacemacs-theme))
 (use-package windresize)
+;(use-package awesome-tab
+;  :config
+;  (awesome-tab-mode t))
 (use-package centaur-tabs
   :config
   (centaur-tabs-headline-match)
   )
-(use-package buffer-move)
+;(use-package buffer-move)
 
 ;; Hotkeys ++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -76,7 +79,8 @@
 ;; Helm ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 (use-package helm
-  :after helm-core)
+  :after helm-core
+  )
 (use-package helm-projectile
   :after projectile)
 (use-package helm-descbinds)
@@ -102,6 +106,8 @@
 (use-package lsp-treemacs)
 (use-package helm-lsp
   :after lsp-mode)
+(use-package csharp-mode)
+(require 'lsp-csharp)
 
 ;; Version Control
 
@@ -126,7 +132,7 @@
 ;; Debugging ++++++++++++++++++++++++++++++++++++++++++
 
 (use-package dap-mode)
-(use-package realgud)
+;(use-package realgud)
 
 ;; ORG MODE +++++++++++++++++++++++++++++++++++++++++++++++++
 

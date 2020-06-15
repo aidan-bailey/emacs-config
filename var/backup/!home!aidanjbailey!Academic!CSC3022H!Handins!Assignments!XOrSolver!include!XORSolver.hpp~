@@ -1,0 +1,36 @@
+#ifndef XORSOLVER_HPP
+#include <vector>
+
+namespace BLYAID001 {
+
+typedef struct {
+  int State;
+  std::vector<double> Weights;
+  std::vector<int> Inputs;
+  double Bias;
+} Perceptron;
+
+class XORSolver {
+private:
+  double const LEARNING_RATE = 0.1;
+  Perceptron NandGate;
+  Perceptron AndGate;
+  Perceptron OrGate;
+  Perceptron InputA;
+  Perceptron InputB;
+
+  void perceptronRule(Perceptron & perceptron, int targetOutput);
+  void activationFunction(Perceptron & perceptron);
+  double getInitWeight(void);
+  void think(void);
+  bool learn(int targetOutput);
+
+public:
+  XORSolver(void);
+  void Train(std::vector<int[2]> inputStates, std::vector<int> expectedStates);
+  int Test(std::vector<int[2]> inputStates);
+};
+
+}; // namespace BLYAID001
+
+#endif

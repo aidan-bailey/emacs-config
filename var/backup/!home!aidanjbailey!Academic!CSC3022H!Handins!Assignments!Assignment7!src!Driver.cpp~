@@ -1,0 +1,17 @@
+#include <ANNHelper.hpp>
+#include <iostream>
+
+int main(int argc, char *argv[]) {
+  using namespace BLYAID001;
+  using namespace std;
+
+  ANNHelper ann;
+  vector<vector<float>> input{{0, 0}, {0, 1}, {1, 0}, {1, 1}};
+  vector<float> outputs{0, 1, 1, 0};
+
+  for (int trainingIndex = 0; trainingIndex < 4; trainingIndex++){
+    ann.Train(outputs[trainingIndex], input[trainingIndex]);
+  }
+
+  cout << ann.Test({1,0});
+}
