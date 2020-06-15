@@ -6,15 +6,15 @@
 ;; Load Theme
 (load-file "~/.emacs.d/extras/themes/afterglow-theme.el")
 ;; Load Base Configurations
-(load-file "~/.emacs.d/base-config.el")
+(load-file "~/.emacs.d/modules/base-config.el")
 ;; load package config
-(load-file "~/.emacs.d/package-vars.el")
+(load-file "~/.emacs.d/modules/package-vars.el")
 ;; Load Packages
-(load-file "~/.emacs.d/package-list.el")
+(load-file "~/.emacs.d/modules/package-list.el")
 ;; Load Hooks
-(load-file "~/.emacs.d/package-hooks.el")
+(load-file "~/.emacs.d/modules/package-hooks.el")
 ;; load Keymap
-(load-file "~/.emacs.d/general-spacemap.el")
+(load-file "~/.emacs.d/modules/general-spacemap.el")
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
