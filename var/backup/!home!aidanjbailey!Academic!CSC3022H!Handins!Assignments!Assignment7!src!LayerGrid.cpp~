@@ -1,4 +1,0 @@
-typedef struct {
-  int Number;
-  bool State;
-} perceptron;
