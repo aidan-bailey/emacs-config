@@ -49,22 +49,24 @@
   :keymaps 'override
   :prefix "SPC"
 
+  "ESC" 'helm-keyboard-quit
+
   ;; Shell
   "s" 'term
 
   ;; Help binds
-  ;;"ha" 'helm-apropos
-  "hb" 'counsel-descbinds
-  "hF" 'counsel-describe-function
-  "hv" 'counsel-describe-variable
-  "ha" 'counsel-apropos
-  "hf" 'counsel-describe-face
+  "ha" 'helm-apropos
+  ;;"hb" 'counsel-descbinds
+  ;;"hF" 'counsel-describe-function
+  ;;"hv" 'counsel-describe-variable
+  ;;"ha" 'counsel-apropos
+  ;;"hf" 'counsel-describe-face
   "hw" 'whichkey-show-major-mode
 
   ;; IDE Binds
   "ig"   'gdb
   "ic"    'projectile-compile-project
-  ;;"im"   'helm-make-projectile
+  "im"   'helm-make-projectile
   ;;"if"   'format-all-buffer
   "if"   'lsp-format-buffer
   "id" 'lsp-ui-doc-glance
@@ -72,23 +74,23 @@
   ;;"if" 'lsp-format-buffer
 
   ;; Helm Binds
-  ;;"SPC" 'helm-M-x
+  "SPC" 'helm-M-x
 
   ;; Ivy Binds
-  "SPC" 'counsel-M-x
+  ;;"SPC" 'counsel-M-x
 
   ;; File Binds
-  ;;"ff" 'helm-find-files
-  "ff" 'counsel-find-file
+  "ff" 'helm-find-files
+  ;;"ff" 'counsel-find-file
 
   ;; Project Binds
-  ;;"pf" 'helm-projectile
-  ;;"pr" 'helm-projectile-recentf
-  "pp" 'counsel-projectile
-  "pd" 'counsel-projectile-find-dir
-  "ps" 'counsel-projectile-switch-project
-  "pb" 'counsel-projectile-switch-to-buffer
+  "pf" 'helm-projectile
+  "pr" 'helm-projectile-recentf
   "pn" 'neotree-projectile-action
+  ;;"pp" 'counsel-projectile
+  ;;"pd" 'counsel-projectile-find-dir
+  ;;"ps" 'counsel-projectile-switch-project
+  ;;"pb" 'counsel-projectile-switch-to-buffer
   ;;"pc" 'helm-projectile-compile-project
 
   ;; Buffer Binds
@@ -123,6 +125,7 @@
   "wk" 'evil-window-up
   "wl" 'evil-window-right
   "wH" 'buf-move-left
+  "pn" 'neotree-projectile-action
   "wJ" 'buf-move-down
   "wK" 'buf-move-up
   "wL" 'buf-move-right
@@ -142,20 +145,21 @@
   :keymaps 'override
   :prefix "g"
 
-  ;;"t" 'helm-imenu
-  ;;"T" 'helm-imenu-in-all-buffers
-  ;;"s" 'helm-swoop
-  ;;"o" 'helm-occur
+  "t" 'helm-imenu
+  "T" 'helm-imenu-in-all-buffers
+  "s" 'helm-swoop
+  "o" 'helm-occur
+  "f" 'helm-find-files
+  "p" 'helm-projectile-find-file
   ;;"k" 'helm-show-kill-ring
-  ;;"f" 'helm-find-files
-  ;;"p" 'helm-projectile-find-file
-  "T" 'ivy-imenu-anywhere
-  "t" 'counsel-imenu
-  "s" 'swiper
-  "p" 'counsel-projectile-find-file
-  "aw" 'evil-ace-jump-word-mode
-  "ac" 'evil-ace-jump-char-mode
-  "al" 'evil-ace-jump-line-mode
+  ;;"T" 'ivy-imenu-anywhere
+  ;;"t" 'counsel-imenu
+  ;;"s" 'swiper
+  ;;"p" 'counsel-projectile-find-file
+  ;;"aw" 'evil-ace-jump-word-mode
+  ;;"ac" 'evil-ace-jump-char-mode
+  ;;"k" 'helm-show-kill-ring
+  ;;"al" 'evil-ace-jump-line-mode
 
   )
 ;; INSERT ONLY BINDS +++++++++++++++++++++++++++++++++++++++++++++++++++++

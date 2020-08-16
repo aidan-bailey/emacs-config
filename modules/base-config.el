@@ -14,6 +14,7 @@
 (display-time)
 (load-theme 'afterglow t)
 
+
 ;; Attributes
 (set-face-attribute 'default nil
                     :family "Source Code Pro"
