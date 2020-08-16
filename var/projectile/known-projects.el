@@ -1,1 +1,0 @@
-("~/.config/nvim/" "~/.emacs.d/" "~/Projects/GitHub/Personal/chess-plus-plus/" "~/Projects/GitHub/Personal/PerceptronLogicGateSimulator/" "~/Academic/CSC3022H/Notes/CppNotes/" "~/Academic/CSC3002F/OS/Assignment3/" "~/Projects/GitHub/Personal/JavaTemplate/" "~/Academic/CSC3022H/Handins/Assignments/Assignment7/" "~/Academic/CSC3022H/Handins/Assignments/XOrSolver/")
