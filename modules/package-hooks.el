@@ -22,18 +22,20 @@
 ;; Emacs-Startup-Hook
 (add-hook 'emacs-startup-hook 'evil-mode)
 (add-hook 'emacs-startup-hook 'centaur-tabs-mode)
-;(add-hook 'emacs-startup-hook 'helm-descbinds-mode)
+(add-hook 'emacs-startup-hook 'helm-descbinds-mode)
+(add-hook 'emacs-startup-hook 'helm-autoresize-mode)
 (add-hook 'emacs-startup-hook 'projectile-mode)
 (add-hook 'emacs-startup-hook 'lsp-treemacs-sync-mode)
 (add-hook 'emacs-startup-hook 'yas-global-mode)
 (add-hook 'emacs-startup-hook 'which-key-mode)
 (add-hook 'emacs-startup-hook 'helm-autoresize-mode)
-(add-hook 'emacs-startup-hook 'electric-pair-mode)
-(add-hook 'emacs-startup-hook 'ivy-mode)
+;;(add-hook 'emacs-startup-hook 'ivy-mode)
 
 ;; Prog-Mode-Hook
 (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+(add-hook 'prog-mode-hook 'electric-pair-mode)
+(add-hook 'prog-mode-hook 'git-gutter-mode)
 ;;(add-hook 'prog-mode-hook 'smartparens-mode)
 
 ;; Company-Mode-Hook
@@ -78,6 +80,6 @@
       (call-interactively #'company-complete-common))))
 
 (add-hook 'company-mode-hook (lambda ()
-  (substitute-key-definition 'company-complete-common
-                             'company-yasnippet-or-completion
-                             company-active-map)))
+			       (substitute-key-definition 'company-complete-common
+							  'company-yasnippet-or-completion
+							  company-active-map)))

@@ -13,6 +13,9 @@
 (defun use-package-always-ensure (form)
   (append form '(:ensure t))) (advice-add #'use-package :filter-args #'use-package-always-ensure)
 
+;; Async
+
+(use-package async :config (async-bytecomp-package-mode 1))
 
 ;; Package Packages
 
@@ -78,20 +81,20 @@
 
 ;; Ivy
 
-(use-package ivy)
-(use-package counsel-projectile)
+;;(use-package ivy)
+;;(use-package counsel-projectile)
 
 ;; Helm ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-;;(use-package helm
-;;  :after helm-core
-;;  )
-;;(use-package helm-projectile
-;;  :after projectile)
-;;(use-package helm-descbinds)
-;;(use-package helm-swoop)
-;;(use-package helm-org-rifle)
-;;(use-package helm-make)
+(use-package helm
+  :after helm-core
+  )
+(use-package helm-projectile
+  :after projectile)
+(use-package helm-descbinds)
+(use-package helm-swoop)
+(use-package helm-org-rifle)
+(use-package helm-make)
 (use-package projectile)
 
 ;; Syntax Checking +++++++++++++++++++++++++++++++++
@@ -112,10 +115,13 @@
 (use-package helm-lsp
   :after lsp-mode)
 (use-package csharp-mode)
+(use-package lsp-java)
+
 (require 'lsp-csharp)
 
 ;; Version Control
 
+(use-package git-gutter)
 ;;(use-package magit)
 ;;(use-package forge)
 
@@ -136,7 +142,10 @@
 
 ;; Debugging ++++++++++++++++++++++++++++++++++++++++++
 
-(use-package dap-mode)
+(use-package dap-mode
+  :after lsp-mode
+  :config (dap-auto-configure-mode))
+(require 'dap-java)
 ;(use-package realgud)
 
 ;; ORG MODE +++++++++++++++++++++++++++++++++++++++++++++++++

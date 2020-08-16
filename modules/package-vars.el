@@ -36,12 +36,12 @@
 (setq org-download-screenshot-method "spectacle -br -o %s")
 
 ;; Helm
-;;(setq helm-autoresize-max-height 0)
-;;(setq helm-autoresize-min-height 20)
+(setq helm-autoresize-max-height 0)
+(setq helm-autoresize-min-height 20)
 
 ;; Ivy
-(setq ivy-use-virtual-buffers t)
-(setq enable-recursive-minibuffers t)
+;;(setq ivy-use-virtual-buffers t)
+;;(setq enable-recursive-minibuffers t)
 
 ;; LSP-Ui
 (setq lsp-ui-doc-delay 0.9)
